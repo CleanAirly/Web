@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Pbiometria</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/animaciones.css">
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+
+    <!------------------------------------------------ MENU ------------------------------------------------>
+
+    <header>
+        <nav id="main-menu" class="activo" role="banner">
+            <a href="landing.html" ><img src="images/cleanAirlyLogo2.png" id="logo"></a>
+            <ul>
+                <a href="landing.html"><li>Inicio</li></a>
+                <a href="landing.html#contactanos"><li>Contáctanos</li></a>
+                <li><a href="home.html" class="pagina-actual" id="sesion">Mis datos</a></li>
+            </ul>
+            <div class="hamburguesa">
+                <div></div>
+                <div></div>
+                   <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <!------------------------------------------------ DATOS USUARIO ------------------------------------------------>
+
+    <section class="centrar">
+
+        <div id="contenedor-inputs">
+            <h1>Tu perfil</h1>
+            <p>Nombre:</p>
+            
+            <div class="input-fake centrar contenedores-sombra">
+                <h5 id="nombreUsuario">Marta</h5>
+            </div>
+            <p>Email:</p>
+            <div class="input-fake centrar contenedores-sombra">
+                    <h5 id="emailUsuario">marta@gmail.com</h5>
+            </div>
+            <p>Teléfono:</p>
+            <div class="input-fake centrar contenedores-sombra">
+                <h5 id="telefonoUsuario">456 345 645</h5>
+            </div>
+        </div>
+
+        <p id="subrayado">Restable tu contraseña</p>
+
+        <button type="button" id="editar-perfil" class="crecer boton boton-azul">Editar mis datos</button>
+        <button type="button" id="cerrar-sesion" class="crecer boton boton-blanco">Cerrar sesión</button>
+    
+    </section>
+
+    <script src="menu.js"></script>
+       
+</body>
+</html>

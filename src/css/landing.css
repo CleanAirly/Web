@@ -1,0 +1,199 @@
+/* FONDO ------------------------------------------------------------------------------------------------ */
+body{
+    overflow-x: hidden;
+}  
+.izquierda{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    
+}
+.blanco{
+    background-color: var(--fondo-pagina);
+    background-image: url("../images/fondo_circulos.svg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+.contenedor-texto-izquierda{
+    padding-left: 6rem;
+    
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+h1{
+    margin-top: 13rem;
+    font-size: 35px;
+}
+p{
+    margin-top: 1rem;
+    font-size: 18px;
+}
+#contenedor-botones{
+    margin-bottom: 10rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;   
+}
+button{
+    margin-top: 2rem;
+    width: 150px;
+    height: 40px;
+}
+#boton-blanco-landing{
+    margin-right: 1rem;
+}
+#portatil-movil{
+    position: absolute;
+    right: 0;
+    margin-top:4rem;
+    margin-right: 3rem;
+    height: 40rem;
+    width: 40rem;
+}
+svg{
+    width: 100%;
+}
+
+.derecha{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: start;
+}
+.azul{
+    background-color: var(--secciones);
+    color: var(--fondo-pagina);
+}
+
+#movil{
+    position: absolute;
+    height: 45rem;
+    width: 45rem;
+    left: 0;
+    top:32rem;
+}
+.contenedor-texto-derecha{
+    margin-top: 2rem;
+    width: 50%;
+    padding-right: 6rem ;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+}
+
+h3{
+    font-size: 25px;
+}
+.contenedor-texto-derecha p{
+    text-align: end;
+}
+h5{
+    margin-top: 1rem;
+    font-size: 18px;
+}
+
+#nosotros{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6rem;
+}
+#contenedor-circulos{
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.circulo-texto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.circulos{
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+    background-color: var(--secciones);
+}
+.seccion-blanca{
+    justify-content: end;
+}
+#portatil{
+    position: absolute;
+    left: 0;
+    margin-left: 9rem;
+    margin-top: 20rem;
+    height: 600px;
+    width: 600px;
+}
+
+#descargar-app{
+    margin-top: 2rem;
+    height: 77px;
+    width: 200px;
+}
+#tu-ere-pobre{
+    position: absolute;
+    right: 0;
+    margin-right: 8rem;
+    margin-top: -15rem;
+    height: 40rem;
+    width: 40rem;
+}
+
+@media screen and (max-width:900px){
+    section{
+        flex-direction: column;
+        background-image:none;
+    } 
+    #primera{
+        flex-direction: column;    
+    }
+    h1{
+        margin-top:10rem;
+        margin-bottom: 18rem;
+    
+    }
+    .contenedor-texto{
+        width: 70%;
+    }
+    #portatil-movil{
+        position: absolute;
+        top:0;
+        margin-top: 10rem;
+        height: 450px;
+    }
+    #contenedor-botones{
+        margin-bottom: 4rem;
+    }
+    #movil{
+        margin-bottom: 10rem;
+    }
+    .seccion-azul{
+        flex-direction: column;
+    }
+    .contenedor-texto2{
+        width: 60%;
+    }
+    #contenedor-circulos{
+        flex-direction: column;
+    }
+}
+

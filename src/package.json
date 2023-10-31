@@ -1,0 +1,1 @@
+{"browser":{"fs":false},"scripts":{"build":"webpack --mode production","builddev":"webpack --mode development"},"dependencies":{"api":"^6.1.1","axios":"^1.5.0","http":"^0.0.1-security","http-proxy":"^1.18.1","https":"^1.0.0","path":"^0.12.7"},"devDependencies":{"webpack":"^5.88.2","webpack-cli":"^5.1.4"}}
