@@ -1,0 +1,8 @@
+.crecer {
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000);
+  }
+  
+  .crecer:hover {
+    transform: scale(1.1);
+  }

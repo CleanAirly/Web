@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+/* ESTILOS GENERALES------------------------------------------------------------------------------------ */
+
+:root{
+    --txt-color: #192052;
+    --campos-fondo: #DEE6FB;
+    --blanco-contenedores: #F1F4FD;
+    --fondo-pagina: #F0F4FE;
+    --botones: #2A3EC9;
+    --txt-error: #d61818;
+    --circulo: #C2D5FB;
+    --circulo2: #C2D5FB;
+    --circulo3: #9BBDF9;
+    --secciones: #7095ED;
+}
+
+*{
+    color:inherit;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    text-decoration: none;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--fondo-pagina);
+    color: var(--txt-color);
+}
+
+html{
+    scroll-behavior: smooth;
+}
+/* ESTILOS GENERALES DE ELEMENTOS ----------------------------------------------------*/
+.boton{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.boton-blanco{
+    background-color: var(--fondo-pagina);
+    color: var(--botones);
+    border: solid 3px var(--botones);
+}
+
+.boton-azul{
+    background-color: var(--botones);
+    color: var(--campos-fondo);
+}
+
+.recuadros-inputs{
+    border-radius: 30px;
+    background-color: var(--campos-fondo);
+    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.20) inset;
+}
+.centrar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.alinear-izquierda{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+.contenedores-sombra{
+    background-color: var(--blanco-contenedores);
+    border-radius: 30px;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.15);
+}
