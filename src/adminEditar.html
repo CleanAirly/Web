@@ -15,11 +15,11 @@
     <!------------------------------------------------ MENU ------------------------------------------------>
 
     <header>
-        <nav id="main-menu" class="activo" role="banner">
-            <a href="landing.html" ><img src="images/cleanAirlyLogo2.png" id="logo"></a>
+        <nav id="main-menu" class="activo" role="menubar">
+            <a href="landing.html" ><img src="images/cleanAirlyLogo2.png" id="logo" alt="logo"></a>
             <ul>
-                <a href="landing.html"><li>Inicio</li></a>
-                <a href="landing.html#contactanos"><li>Contáctanos</li></a>
+                <li><a href="landing.html">Inicio</a></li>
+                <li><a href="landing.html#contactanos">Contáctanos</a></li>
                 <li><a href="home.html" class="pagina-actual" id="sesion">Mis datos</a></li>
             </ul>
             <div class="hamburguesa">
@@ -34,7 +34,7 @@
 
     <section class="centrar">
         <form class="alinear-izquierda">
-            <label><h1>Editar los datos de x</h1></label>
+            <h1>Editar los datos de x</h1>
 
             <label for="nombreUsuario">Nombre:</label>
             <input type="text" name="nombre" id="nombreUsuario" class="recuadros-inputs" required>
@@ -45,8 +45,8 @@
             <label for="sensorUsuario">Sensor:</label>
             <input type="number" name="sensor" id="sensorUsuario" class="recuadros-inputs" required>
 
-            <label>Estado:</label>
-            <select class="contenedores-sombra">
+            <label for="desplegable">Estado:</label>
+            <select class="contenedores-sombra" id="desplegable">
                 <optgroup label="Estado sensor">
                     <option disabled selected>Elige una opción</option>
                     <option value="opcion1">Activo</option>
