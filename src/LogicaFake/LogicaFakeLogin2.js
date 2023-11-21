@@ -148,11 +148,6 @@ async function hashPassword(password) {
     return hashHex;
 }
 
-
-
-
-
-
 async function iniciarSesion() {
     try {
         // Obtener los valores de los campos de entrada

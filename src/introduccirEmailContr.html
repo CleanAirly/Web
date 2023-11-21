@@ -33,14 +33,15 @@
     <!------------------------------------------------ DATOS DEL USUARIO ------------------------------------------------>
 
     <section>
-        <form class="alinear-izquierda">
-            <label><h1>¿Has olvidado tu contraseña?</h1></label>
-            <label><h2>No te preocupes, vamos a restablecerla</h2></label>
+        <form class="alinear-izquierda" id="formulario-correo-valido">
+            <h1>¿Has olvidado tu contraseña?</h1>
+            <h2>No te preocupes, vamos a restablecerla</h2>
 
             <label for="emailRecuperacion"><h3>Introduce tu email:</h3></label>
             <input type="email" name="emailRecuperacion" id="emailRecuperacion" class="recuadros-inputs" required>
             
-            <label><p>A esta cuenta de email te enviaremos un correo para que puedas recuperar tu contraseña</p></label>
+            <p>A esta cuenta de email te enviaremos un correo para que puedas recuperar tu contraseña</p>
+
 
             <label id="error" class="hidden">El correo no existe</label>
 
@@ -49,15 +50,16 @@
 
         </form>
 
-        <dialog class="centrar contenedores-sombra" id="popup-enviar-email">
+       <!-- <dialog class="centrar contenedores-sombra" id="popup-enviar-email">
             <h3>Ya se ha enviado un correo, revisa tu bandeja de entrada</h3>
             <div class="botones-pop-up">
                 <button id="aceptar" class="crecer boton boton-azul">Aceptar</button>
             </div>
-        </dialog>
+        </dialog> -->
 
     </section>
     <script src="menu2.js"></script>
-    <script src="introduccirEmailContr.js"></script>
+    <script type="module" src="./LogicaFake/LogicaFakeIntroduccirEmail.js"></script>
+    <script src="introduccirEmailContr.js" nomodule></script>
 </body>
 </html>
