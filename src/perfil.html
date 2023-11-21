@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil - Pbiometria</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos2.css">
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="stylesheet" href="css/animaciones.css">
     <link rel="stylesheet" href="css/menu.css">
@@ -42,7 +42,7 @@
             </div>
             <p>Email:</p>
             <div class="input-fake centrar contenedores-sombra">
-                    <h5 id="emailUsuario">marta@gmail.com</h5>
+                <h5 id="emailUsuario">marta@gmail.com</h5>
             </div>
             <p>Teléfono:</p>
             <div class="input-fake centrar contenedores-sombra">
@@ -50,15 +50,23 @@
             </div>
         </div>
 
-        <p id="subrayado">Restablece tu contraseña</p>
+        <a href="restablecerContrasenya.html"><p id="subrayado">Restablece tu contraseña</p></a>
 
         <button type="button" id="editar-perfil" class="crecer boton boton-azul">Editar mis datos</button>
         <button type="button" id="cerrar-sesion" class="crecer boton boton-blanco">Cerrar sesión</button>
     
+        <dialog class="centrar contenedores-sombra" id="popup-cerrar-sesion">
+            <h3>¿Deseas cancelar la edicción?</h3>
+            <div class="botones-pop-up">
+                <button id="cancelar-cerrar" class="crecer boton boton-blanco">Aceptar</button>
+                <button id="aceptar-cerrar" class="crecer boton boton-azul">Cancelar</button>
+            </div>
+        </dialog>
+
     </section>
 
-    <script src="menu.js"></script>
-    <script type="module" src="perfil.js"></script>
+    <script src="menu2.js"></script>
+    <script type="module" src="perfil2.js"></script>
     
        
 </body>

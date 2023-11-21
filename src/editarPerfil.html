@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar perfil - Pbiometria</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos2.css">
     <link rel="stylesheet" href="css/editarPerfil.css">
     <link rel="stylesheet" href="css/animaciones.css">
     <link rel="stylesheet" href="css/menu.css">
@@ -50,9 +50,28 @@
             <input type="submit" value="Guardar cambios" id="editar-perfil" class="crecer boton boton-azul">
             <input type="button" value="Cancelar" id="cancelar-editar-perfil" class="crecer boton boton-blanco">
         </form>
+
+        <!------------------------------------------------ POP UPS ------------------------------------------------>
+
+        <dialog class="centrar contenedores-sombra" id="popup-guardar-cambios">
+            <h3>¿Deseas guardar los cambios?</h3>
+            <div class="botones-pop-up">
+                <button id="cancelar-guardar" class="crecer boton boton-blanco">Cancelar</button>
+                <button id="guardar-cambios" class="crecer boton boton-azul">Aceptar</button>
+            </div>
+        </dialog>
+
+        <dialog class="centrar contenedores-sombra" id="popup-cancelar-cambios">
+            <h3>¿Deseas cancelar la edicción?</h3>
+            <div class="botones-pop-up">
+                <button id="cancelar-salir" class="crecer boton boton-blanco">Cancelar</button>
+                <button id="aceptar-salir" class="crecer boton boton-azul">Aceptar</button>
+            </div>
+        </dialog>
+
     </section>
     
-    <script src="menu.js"></script>
+    <script src="menu2.js"></script>
     <script type="module" src="editarPerfil.js"></script>
     
 </body>

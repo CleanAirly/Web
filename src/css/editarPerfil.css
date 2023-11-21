@@ -21,7 +21,6 @@ h1{
 form{
     margin-top: 2rem;
     width: 80%;
-    
 }
 
 input{
@@ -31,9 +30,16 @@ input{
     width: 100%;
     padding-left: 1rem;
 }
-
+input:focus{
+    outline: none;
+}
 .hidden{
     display: none;
+}
+
+dialog button{
+    width: 48%;
+    height: 30px;
 }
 
 @media screen and (min-width:750px){

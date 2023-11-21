@@ -1,0 +1,50 @@
+/* FONDO ------------------------------------------------------------------------------------------------ */
+section{
+    max-height: 100vh;
+    height: 100vh;
+    background-image: url("../images/fondo_circulos.svg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+#error{
+    color: var(--txt-error);
+    font-size: 14px;
+}
+h1{
+    margin-top: 7rem;
+    margin-bottom: 3rem;
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--txt-color);
+}
+
+form{
+    margin-top: 2rem;
+    width: 80%;
+}
+
+input{
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    height: 40px;
+    width: 100%;
+    padding-left: 1rem;
+}
+input:focus{
+    outline: none;
+}
+.hidden{
+    display: none;
+}
+
+dialog button{
+    width: 48%;
+    height: 30px;
+}
+
+@media screen and (min-width:750px){
+    form{
+        width: 40%;
+    }
+}
+

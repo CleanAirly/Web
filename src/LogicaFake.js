@@ -7,7 +7,7 @@
 async function obtenerDatosDesdeServidorLocal() {
     try {
         // Realizar una solicitud GET al servidor local
-        const respuesta = await fetch('http://192.168.43.129:3001/api/sensor/', {
+        const respuesta = await fetch('http://192.168.1.57:3001/api/sensor/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario

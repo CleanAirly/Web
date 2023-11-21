@@ -9,7 +9,6 @@ body{
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    
 }
 .blanco{
     background-color: var(--fondo-pagina);
@@ -19,19 +18,21 @@ body{
 }
 .contenedor-texto-izquierda{
     padding-left: 6rem;
-    
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: center;
 }
+#texto-h1{
+    width: 40%;
+}
 h1{
     margin-top: 13rem;
     font-size: 35px;
+    margin-bottom: 1rem;
 }
 p{
-    margin-top: 1rem;
     font-size: 18px;
 }
 #contenedor-botones{
@@ -77,61 +78,40 @@ svg{
 
 #movil{
     position: absolute;
-    height: 45rem;
-    width: 45rem;
+    height: 35rem;
+    width: 35rem;
     left: 0;
-    top:32rem;
+    top:30rem;
 }
 .contenedor-texto-derecha{
     margin-top: 2rem;
     width: 50%;
     padding-right: 6rem ;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     align-items: end;
     justify-content: center;
 }
 
-h3{
+h2{
     font-size: 25px;
+    margin-bottom: 0.1rem;
+}
+h3{
+    font-size: 22px;
+    font-weight: 400p;
 }
 .contenedor-texto-derecha p{
     text-align: end;
 }
 h5{
-    margin-top: 1rem;
-    font-size: 18px;
+    margin-top: 0.5rem;
+    font-weight: 400;
+    font-size: 22px;
+    margin-top: 0.25;
 }
 
-#nosotros{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 6rem;
-}
-#contenedor-circulos{
-    margin-top: 2rem;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
-.circulo-texto{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.circulos{
-    height: 150px;
-    width: 150px;
-    border-radius: 100px;
-    background-color: var(--secciones);
-}
 .seccion-blanca{
     justify-content: end;
 }
@@ -139,7 +119,7 @@ h5{
     position: absolute;
     left: 0;
     margin-left: 9rem;
-    margin-top: 20rem;
+    margin-top: -2rem;
     height: 600px;
     width: 600px;
 }
@@ -157,43 +137,113 @@ h5{
     height: 40rem;
     width: 40rem;
 }
-
-@media screen and (max-width:900px){
-    section{
-        flex-direction: column;
-        background-image:none;
-    } 
-    #primera{
-        flex-direction: column;    
-    }
-    h1{
-        margin-top:10rem;
-        margin-bottom: 18rem;
-    
-    }
-    .contenedor-texto{
-        width: 70%;
-    }
-    #portatil-movil{
-        position: absolute;
-        top:0;
-        margin-top: 10rem;
-        height: 450px;
-    }
-    #contenedor-botones{
-        margin-bottom: 4rem;
-    }
-    #movil{
-        margin-bottom: 10rem;
-    }
-    .seccion-azul{
-        flex-direction: column;
-    }
-    .contenedor-texto2{
-        width: 60%;
-    }
-    #contenedor-circulos{
-        flex-direction: column;
-    }
+#ultima-foto{
+    margin-top: -10rem;
+}
+footer{
+    margin-top: -1rem;
+    height: 300px;
+    background-color: var(--circulo2);
+    padding: 2rem;
+}
+#logo-landing{
+    width: 100px;
+    height: 100px;
 }
 
+@media screen and (max-width:1100px){
+    #portatil-movil{
+        height: 28rem;
+        width: 28rem;
+    }
+    #movil{
+        height: 40rem;
+        width: 40rem;
+        top:45rem;
+        margin-left: -6rem;
+    }
+    #portatil{
+        margin-left: 0;
+        height: 500px;
+        width: 500px;
+    }
+    #tu-ere-pobre{
+        margin-right: -2rem;
+        margin-top: -10rem;
+        height: 25rem;
+        width: 25rem;
+    }
+}
+@media screen and (max-width:900px){
+    #texto-h1{
+        width: 100%;
+    }
+    .izquierda{
+        align-items: center;
+        justify-content: center;
+    }
+    .contenedor-texto-izquierda{
+        width: 90%;
+        padding:0 3rem;
+        align-items: center;
+    }
+    h1{
+        margin-top: 9rem;
+    }
+    p{
+        font-size: 16px;
+    }
+    #contenedor-botones{
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        margin-bottom: 6rem;
+    }
+    button{
+        width: 150px;
+    }
+    #portatil-movil{
+        height: 20rem;
+        width: 20rem;
+        margin: 0 0;
+        right: auto;
+        position: relative;
+    }
+    .derecha{
+        align-items: center;
+        justify-content: center;
+    }
+    .contenedor-texto-derecha{
+        width: 90%;
+        padding: 0 3rem;
+        align-items: start;
+    }
+    .contenedor-texto-derecha p{
+        text-align: start;
+    }
+    #movil{
+        position: relative;
+        left: auto;
+        margin-top: -10rem;
+        top:0;
+        margin-left: 0rem;
+        width: 25rem;
+        height: 25rem;
+    }
+    #portatil{
+        width: 250px;
+        height: 250px;
+        top:0;
+        margin-top: 0;
+        position: relative;
+    }
+    #tu-ere-pobre{
+        position: relative;
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: -15rem;
+        height: 25rem;
+        width: 25rem;
+    }
+}
