@@ -3,9 +3,8 @@
 #main-menu{
     --bg-color: var(--fondo-pagina);
     --txt2-color: var(--txt-color);
-    --hover-bg: var(--bones);
+    --hover-bg: var(--botones);
     --hover-txt: var(--circulo);
-    --div-color: var(--verde-oscuro);
     --menu-height: 7rem;
 }
 .pagina-actual{

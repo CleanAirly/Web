@@ -100,16 +100,15 @@ h2{
 }
 h3{
     font-size: 22px;
-    font-weight: 400p;
+    font-weight: 400;
 }
 .contenedor-texto-derecha p{
     text-align: end;
 }
 h5{
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
     font-weight: 400;
     font-size: 22px;
-    margin-top: 0.25;
 }
 
 .seccion-blanca{
