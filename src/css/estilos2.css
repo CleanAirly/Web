@@ -63,12 +63,6 @@ html{
     align-items: center;
     justify-content: center;
 }
-.alinear-izquierda{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-}
 .contenedores-sombra{
     background-color: var(--blanco-contenedores);
     border-radius: 30px;
