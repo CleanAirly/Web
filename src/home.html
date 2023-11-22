@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing - PBiometria</title>
-    <link rel="stylesheet" href="css/estilos2.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/estilos3.css">
+    <link rel="stylesheet" href="css/home2.css">
     <link rel="stylesheet" href="css/menu.css">
      <!-- Agregar la biblioteca Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,100 +14,146 @@
 
     <!------------------------------------------------ MENU ------------------------------------------------>
 
-    <header>
-        <nav id="main-menu" class="activo" role="menubar">
-            <a href="landing.html" ><img src="images/cleanAirlyLogo2.png" id="logo" alt="logo"></a>
-            <ul>
-                <li><a href="landing.html">Inicio</a></li>
-                <li><a href="landing.html#contactanos">Contáctanos</a></li>
-                <li><a href="perfil.html" class="pagina-actual" id="sesion">Mi cuenta</a></li>
-            </ul>
-            <div class="hamburguesa">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </nav>
-    </header>
-    
+
     <!------------------------------------------------ DATOS ------------------------------------------------>
 
-    <section class="centrar">
+    <section >
 
-        <h1 id="nombre-usuario">¡Hola, Marta!</h1>
-
-        <div id="contenedor-todo">
-            
-            <!------------------------------------------------ DATOS PPM ------------------------------------------------>
-            
-            <div class="contenedor entero centrar contenedores-sombra">
-                <h2>¿Cómo has respirado hoy?</h2>
-                
-                <div id="contenedor-progress-bar" class="centrar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
-                        <circle class="progress-bar-background" cx="110" cy="110" r="95" stroke="#E5E5E5" stroke-width="20" />
-                        <circle class="progress-bar-fill" cx="110" cy="110" r="95" stroke-linecap="round" stroke-width="20" />
-                    </svg>
-                        <h3 id="texto-informativo">200 ppm</h3>
+        <header>
+            <nav id="main-menu" class="activo" role="menubar">
+                <a href="landing.html" ><img src="images/cleanAirlyLogo2.png" id="logo" alt="logo"></a>
+                <ul>
+                    <li><a href="landing.html">Inicio</a></li>
+                    <li><a href="landing.html#contactanos">Contáctanos</a></li>
+                    <li><a href="perfil2.html" class="pagina-actual" id="sesion">Mi cuenta</a></li>
+                </ul>
+                <div class="hamburguesa">
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
-                <h4 id="nivel-respirado">Bastante bien</h4>
+            </nav>
+        </header>
 
-                <div id="raya"></div>
 
-                <h3>Datos a lo largo del día</h3>
+        <div class="centrar">
 
-                <canvas id="miGrafico"></canvas>
+            <h1 id="nombre-usuario">¡Hola, Marta!</h1>
 
-                <div class="contenedor-leyenda">
-                    <div id="indicador"></div>
-                    <p>Nivel de Ozono en el aire</p>
+            <div id="contenedor-todo">
+
+                <!------------------------------------------------ DATOS PPM ------------------------------------------------>
+
+                <div class="contenedor entero centrar contenedores-sombra">
+                    <h2>¿Cómo has respirado hoy?</h2>
+
+                    <div id="contenedor-progress-bar" class="centrar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
+                            <circle class="progress-bar-background" cx="110" cy="110" r="95" stroke="#E5E5E5" stroke-width="20" />
+                            <circle class="progress-bar-fill" cx="110" cy="110" r="95" stroke-linecap="round" stroke-width="20" />
+                        </svg>
+                            <h3 id="texto-informativo">200 ppm</h3>
+                    </div>
+                    <h4 id="nivel-respirado">Bastante bien</h4>
+
+                    <div id="raya"></div>
+
+                    <h3>Datos a lo largo del día</h3>
+
+                    <canvas id="miGrafico"></canvas>
+
+                    <div class="contenedor-leyenda">
+                        <div id="indicador"></div>
+                        <p>Nivel de Ozono en el aire</p>
+                    </div>
                 </div>
+
+                <!------------------------------------------------ DATOS PPM ------------------------------------------------>
+
+                <div class="contenedor entero centrar contenedores-sombra">
+                    <h2>Información adicional</h2>
+                    <div id="tabla" class="centrar">
+                        <div class="fila">
+                            <div class="columna-izquierda centrar">ppb</div>
+                            <div class="columna-derecha"> Efectos</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna-izquierda centrar">15</div>
+                            <div class="columna-derecha"> Perceptible al olfato</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna-izquierda centrar">35</div>
+                            <div class="columna-derecha"> Irritaciones oculares</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna-izquierda centrar">50</div>
+                            <div class="columna-derecha"> Probabilidad de jaqeucas</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna-izquierda centrar">100</div>
+                            <div class="columna-derecha"> Disfunción pulmonar</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna-izquierda centrar">150</div>
+                            <div class="columna-derecha"> Inactividad del sistema inmune</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna-izquierda centrar">350</div>
+                            <div class="columna-derecha"> Ataques de asma, tos, dolor torácico</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna-izquierda centrar">400</div>
+                            <div class="columna-derecha"> Reducción de la fuerza física y reacción inflamatoria de los tejidos</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!------------------------------------------------ MAPA ------------------------------------------------>
+
+                <!-- <div class="contenedor entero">
+                    <h2>¿Dónde puedo respirar un mejor aire?</h2>
+                    <img src="images/mapas.jpeg" id="mapa">
+                    <div class="contenedor-leyenda">
+
+                        <div class="fila">
+                            <div id="indicador"></div>
+                            <p>Nivel de Ozono en el aire</p>
+                        </div>
+
+                        <div class="fila">
+                            <div id="indicador"></div>
+                            <p>Nivel de Ozono en el aire</p>
+                        </div>
+
+                        <div class="fila">
+                            <div id="indicador"></div>
+                            <p>Nivel de Ozono en el aire</p>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!------------------------------------------------ Bateria  y Barras ------------------------------------------------>
+
+                <!--
+                <div id="bat-barras">
+                    <div class="contenedor medio" >
+                        <h2>Mi sensor</h2>
+                        <div class="progress-circular">
+                            <h3>76%</h3>
+                            <p>Bateria</p>
+                        </div>
+                        <h3>No hay ninguna alerta</h3>
+                    </div>
+
+                    <div class="contenedor medio">
+                        <h2>Todos los datos</h2>
+                        <p>Nivel de ozono en el aire</p>
+                        <img src="images/grafico_barras.svg" id="barras">
+                        <button type="button" id="ver-mas" class="crecer">Ver más</button>
+                    </div>
+                </div> -->
             </div>
-
-            <!------------------------------------------------ MAPA ------------------------------------------------>
-
-            <!-- <div class="contenedor entero">
-                <h2>¿Dónde puedo respirar un mejor aire?</h2>
-                <img src="images/mapas.jpeg" id="mapa">
-                <div class="contenedor-leyenda">
-
-                    <div class="fila">
-                        <div id="indicador"></div>
-                        <p>Nivel de Ozono en el aire</p>
-                    </div>
-
-                    <div class="fila">
-                        <div id="indicador"></div>
-                        <p>Nivel de Ozono en el aire</p>
-                    </div>
-
-                    <div class="fila">
-                        <div id="indicador"></div>
-                        <p>Nivel de Ozono en el aire</p>
-                    </div>
-                </div>
-            </div> -->
-
-            <!------------------------------------------------ Bateria  y Barras ------------------------------------------------>
-
-            <!--
-            <div id="bat-barras">
-                <div class="contenedor medio" >
-                    <h2>Mi sensor</h2>
-                    <div class="progress-circular">
-                        <h3>76%</h3>
-                        <p>Bateria</p>
-                    </div>
-                    <h3>No hay ninguna alerta</h3>
-                </div>
-
-                <div class="contenedor medio">
-                    <h2>Todos los datos</h2>
-                    <p>Nivel de ozono en el aire</p>
-                    <img src="images/grafico_barras.svg" id="barras">
-                    <button type="button" id="ver-mas" class="crecer">Ver más</button>
-                </div>
-            </div> -->
         </div>
     </section>  
 

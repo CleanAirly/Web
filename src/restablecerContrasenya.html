@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambiar Contraseña - Pbiometria</title>
-    <link rel="stylesheet" href="css/estilos2.css">
-    <link rel="stylesheet" href="css/restablecerContrasenya.css">
+    <link rel="stylesheet" href="css/estilos3.css">
+    <link rel="stylesheet" href="css/restablecerContrasenya2.css">
     <link rel="stylesheet" href="css/animaciones.css">
     <link rel="stylesheet" href="css/menu.css">
 
@@ -38,27 +38,38 @@
 
             <label for="contrasenyaAnterior"><h3>Antigua contraseña:</h3></label>
             <input type="password" name="contrasenyAnterios" id="contrasenyaAnterior" class="recuadros-inputs" required>
-            <span id="texto-error" class="hidden"> Tu contraseña es incorrecta</span>
+            <p id="texto-error" class="hidden estiloerror"> Tu contraseña es incorrecta</p>
 
             <label for="nuevaContrasenya"><h3>Nueva contraseña:</h3></label>
             <input type="password" name="nuevaContrasenya" id="nuevaContrasenya" class="recuadros-inputs" required>
-
+            <label id="error" class="hidden">Las contraseñas no coinciden</label>
             <label for="confNuevaContrasenya"><h3>Repite la contraseña:</h3></label>
             <input type="password" name="confNuevaContrasenya" id="confNuevaContrasenya" class="recuadros-inputs" required>
 
-            <label id="error" class="hidden">Las contraseñas no coinciden</label>
+
 
             <p id="nivel-seguridad">Nivel de seguridad:</p>
             <div id="contenedor-seguridad" class="contenedores-sombra"><div id="progreso-seguridad"></div></div>
             <p id="txt-seguridad">Tu contraseña es segura</p>
 
-            <input type="submit" value="Guardar contraseña" id="boton-recuperar-contrasenya" class="crecer boton boton-blanco">
+            <input type="submit" value="Guardar contraseña" id="boton-recuperar-contrasenya" class="crecer boton boton-azul">
+            <input type="submit" value="Cancelar" id="boton-cancelar" class="crecer boton boton-blanco">
 
         </form>
+
+        <!------------------------------------------------ POP UPS ------------------------------------------------>
+
+        <dialog class="centrar contenedores-sombra" id="popup-cancelar-password">
+            <h3>¿Deseas cancelar la edicción?</h3>
+            <div class="botones-pop-up">
+                <button id="cancelar-salir" class="crecer boton boton-blanco">Cancelar</button>
+                <button id="aceptar-salir" class="crecer boton boton-azul">Aceptar</button>
+            </div>
+        </dialog>
 
 
     </section>
     <script src="menu2.js"></script>
-    <script type="module" src="restablecerContrasenya.js"></script>
+    <script type="module" src="restablecerContrasenya2.js"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@ async function guardarDatosPerfil(nombre, email, telefono) {
         // Obtener los datos en formato JSON
         const datos = await respuesta.json();
         console.log('Datos recibidos desde el servidor local:', datos);
-        window.location.href = 'perfil.html';
+        window.location.href = 'perfil2.html';
     } catch (error) {
         console.error('Error:', error);
     }

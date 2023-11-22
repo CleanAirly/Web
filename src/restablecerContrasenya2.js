@@ -1,59 +1,80 @@
-const errorLabel = document.getElementById("error");
-const lvlSeguridad = document.getElementById("nivel-seguridad");
-const contSeg = document.getElementById("contenedor-seguridad");
-const progresoSeguridad = document.getElementById("progreso-seguridad");
-const btonRecuperar = document.getElementById("boton-recuperar-contrasenya");
-var txtSeguridad = document.getElementById("txt-seguridad");
-
+// inputs --------------------------------------------------------------------------------------------------------------
 const inputContrasenyaActual = document.getElementById("contrasenyaAnterior");
 const inputnuevaContrasenya = document.getElementById("nuevaContrasenya");
 const inputconfContrasenya = document.getElementById("confNuevaContrasenya");
 
+//botones --------------------------------------------------------------------------------------------------------------
+const btonRecuperar = document.getElementById("boton-recuperar-contrasenya");
+const btonCancelar = document.getElementById("boton-cancelar");
+
+//Pop Ups --------------------------------------------------------------------------------------------------------------
+
+const popupCancelar = document.getElementById("popup-cancelar-password");
+const aceptarSalir= document.getElementById("aceptar-salir");
+const cancelarSalir= document.getElementById("cancelar-salir");
+
+
+popupCancelar.style.display="none";
+
+
+//errores --------------------------------------------------------------------------------------------------------------
+const errorLabel = document.getElementById("error");
+const txtSeguridad = document.getElementById("txt-seguridad");
+const errorPassword  = document.getElementById("texto-error");
+
+// barra seguridad -----------------------------------------------------------------------------------------------------
+const contSeg = document.getElementById("contenedor-seguridad");
+const progresoSeguridad = document.getElementById("progreso-seguridad");
+const lvlSeguridad = document.getElementById("nivel-seguridad");
+
+// esconder la barra de seguridad hasta que se introzcan datos ---------------------------------------------------------
 lvlSeguridad.classList.add("hidden");
 contSeg.classList.add("hidden");
 progresoSeguridad.classList.add("hidden");
 txtSeguridad.classList.add("hidden");
-btonRecuperar.classList.remove("crecer");
-btonRecuperar.disable= true;
 
+// obtener los datos ---------------------------------------------------------------------------------------------------
 const emailUsuario = localStorage.getItem('usuarioLogeado');
-console.log(emailUsuario)
 
 import { comprobarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya.js';
 import { cambiarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya.js';
 
-btonRecuperar.addEventListener('click',nuevacont);
+btonRecuperar.addEventListener('click',nuevaPassword);
 
-//document.getElementById("nuevaContrasenya").addEventListener('input',seguridadContrasenya);
+inputnuevaContrasenya.addEventListener('input',seguridadContrasenya);
+let passwordCorrecta = false
 
-async function nuevacont(event){
+async function nuevaPassword(event){
     event.preventDefault();
 
-    var nuevaContrasenya = inputnuevaContrasenya.value;
-    var confNuevaContrasenya = inputconfContrasenya.value;
+    let nuevaContrasenya = inputnuevaContrasenya.value;
+    let confNuevaContrasenya = inputconfContrasenya.value;
     let introduccirContActual = inputContrasenyaActual.value;
 
     let passwordCifrada = await hashPassword(introduccirContActual)
     let comprobar = await comprobarContrasenya(emailUsuario, passwordCifrada)
+
     console.log("comprobacion" + comprobar)
     if(comprobar=== true){
-        console.log("AAAAA")
-        if(nuevaContrasenya===confNuevaContrasenya){
+        errorPassword.classList.add("hidden");
+        console.log("primer if")
+
+        if(nuevaContrasenya===confNuevaContrasenya && passwordCorrecta===true){
             console.log("SE CAMBIO")
+            errorLabel.classList.add("hidden");
             let passwordNuevaCifrada = await hashPassword(nuevaContrasenya)
             await cambiarContrasenya(emailUsuario, passwordNuevaCifrada)
-
+        }else{
+            errorLabel.classList.remove("hidden");
+            console.log("ERROR")
         }
-    }
-    /*
-
-    if(nuevaContrasenya !== confNuevaContrasenya){
-        errorLabel.classList.remove("hidden");
     }else{
-        errorLabel.classList.add("hidden");
-    }*/
+        errorPassword.classList.remove("hidden");
+        console.log("ERROR 2")
+    }
 }
-async function hashPassword(password) {
+
+async function hashPassword(password){
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
@@ -64,7 +85,8 @@ async function hashPassword(password) {
 }
 
 function seguridadContrasenya(){
-    var nuevaContrasenya = document.getElementById("nuevaContrasenya").value;
+
+    let nuevaContrasenya = inputnuevaContrasenya.value;
 
     lvlSeguridad.classList.remove("hidden");
     contSeg.classList.remove("hidden");
@@ -74,55 +96,64 @@ function seguridadContrasenya(){
     const tieneLetras = /[a-zA-Z]/.test(nuevaContrasenya);
     const tieneNumeros = /[0-9]/.test(nuevaContrasenya);
     const tieneMayusculas = /[A-Z]/.test(nuevaContrasenya);
+    console.log(passwordCorrecta)
 
     let porcentaje = 0;
 
-    if(nuevaContrasenya.length==0){
+    if(nuevaContrasenya.length===0){
         porcentaje= 0
         txtSeguridad.textContent="Tu contraseña debe tener al menos 8 carácteres";
-        botonDeshabilitado();
+        passwordCorrecta = false
     }
     else if (tieneLetras && !tieneNumeros && !tieneMayusculas || !tieneLetras && tieneNumeros && !tieneMayusculas || !tieneLetras && !tieneNumeros && tieneMayusculas|| nuevaContrasenya.length<8) {
         porcentaje = 20;
         txtSeguridad.textContent="Tu contraseña debe tener al menos 8 carácteres";
         progresoSeguridad.style.backgroundColor= "var(--txt-error)";
-        botonDeshabilitado();
+        passwordCorrecta = false
 
     }else if(tieneLetras && !tieneNumeros && !tieneMayusculas && nuevaContrasenya.length>=8|| !tieneLetras && tieneNumeros && !tieneMayusculas && nuevaContrasenya.length>=8 || !tieneLetras && !tieneNumeros && tieneMayusculas && nuevaContrasenya.length>=8 ){
         porcentaje = 20;
         txtSeguridad.textContent="Tu contraseña es poco segura";
         progresoSeguridad.style.backgroundColor= "var(--txt-error)";
-        botonDeshabilitado();
+        passwordCorrecta = false
     }
     else if (tieneLetras && tieneNumeros && !tieneMayusculas && nuevaContrasenya.length>=8|| !tieneLetras && tieneNumeros && tieneMayusculas && nuevaContrasenya.length>=8 || tieneLetras && !tieneNumeros && tieneMayusculas && nuevaContrasenya.length>=8) {
         porcentaje = 50;
         txtSeguridad.textContent="Tu contraseña es segura";
         progresoSeguridad.style.backgroundColor= "var(--intermedio)";
-        botonHabilitado();
+        passwordCorrecta = true
         
 
     } else if (tieneLetras && tieneNumeros && tieneMayusculas && nuevaContrasenya.length>=8) {
         porcentaje = 100;
         txtSeguridad.textContent="Tu contraseña es muy segura";
         progresoSeguridad.style.backgroundColor= "var(--bien)";
-        botonHabilitado();
+        passwordCorrecta = true
     }
-
     progresoSeguridad.style.width = porcentaje + "%";
 }
 
-function botonDeshabilitado(){
-    btonRecuperar.disable=true;
-    btonRecuperar.classList.add("boton-blanco");
-    btonRecuperar.classList.remove("boton-azul");
-    btonRecuperar.classList.remove("crecer");
+// Pop Ups -------------------------------------------------------------------------------------------------------------
+
+btonCancelar.addEventListener('click', function(event) {
+    popupCancelar.showModal();
+    popupCancelar.style.display="block";
+});
+function confirmarSalir(){
+
+    popupCancelar.close();
+    popupCancelar.style.display="none";
+
+    window.location.href = 'perfil2.html';
+}
+function noSalir(){
+    popupCancelar.close();
+    popupCancelar.style.display="none";
 }
 
-function botonHabilitado(){
-    btonRecuperar.disable=false;
-    btonRecuperar.classList.add("boton-azul");
-    btonRecuperar.classList.remove("boton-blanco");
-    btonRecuperar.classList.add("crecer");
-}
+aceptarSalir.addEventListener('click',confirmarSalir);
+cancelarSalir.addEventListener('click',noSalir);
+
+
 
 
