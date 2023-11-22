@@ -12,7 +12,16 @@ botonCerrarSesion.addEventListener('click', () => {
     popupCerrarSesion.style.display="block";
 })
 
+// Función para cerrar sesión
+function realizarCierreDeSesion(){
+    localStorage.removeItem('usuarioLogeado');
+    window.location.href = 'index.html'; // Cambia 'index.html' por la página a la que deseas redirigir
+}
+
 function cerrarSalir(){
+    if (e.target === aceptarCerrarSesion) {
+        realizarCierreDeSesion();
+    }
     popupCerrarSesion.close();
     popupCerrarSesion.style.display="none";
 }
