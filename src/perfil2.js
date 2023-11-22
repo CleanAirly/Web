@@ -15,20 +15,18 @@ botonCerrarSesion.addEventListener('click', () => {
 // Función para cerrar sesión
 function realizarCierreDeSesion(){
     localStorage.removeItem('usuarioLogeado');
-    window.location.href = 'index.html'; // Cambia 'index.html' por la página a la que deseas redirigir
-}
-
-function cerrarSalir(){
-    if (e.target === aceptarCerrarSesion) {
-        realizarCierreDeSesion();
-    }
+    location.href = 'landing.html';
     popupCerrarSesion.close();
     popupCerrarSesion.style.display="none";
 }
 
-aceptarCerrarSesion.addEventListener('click', (e) => cerrarSalir(e));
-cancelarCerrarSesion.addEventListener('click', (e) => cerrarSalir(e));
+function cerrarSalir() {
+    popupCerrarSesion.close();
+    popupCerrarSesion.style.display="none";
+}
 
+    aceptarCerrarSesion.addEventListener('click', realizarCierreDeSesion);
+    cancelarCerrarSesion.addEventListener('click', cerrarSalir);
 
 // Agrega un event listener para el evento de clic (click)
 botonEditarPerfil.addEventListener("click", function() {

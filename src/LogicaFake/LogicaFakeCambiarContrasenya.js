@@ -30,7 +30,7 @@ async function cambiarContrasenya(email, contrasenya) {
 
 export {cambiarContrasenya};
 
-async function comprobarContrasenya(email) {
+async function comprobarContrasenya(email, password) {
     try {
         // Realizar una solicitud PUT al servidor local
         const respuesta = await fetch('http://192.168.1.57:3001/api/sensor/comprobarPassword', {
@@ -38,16 +38,16 @@ async function comprobarContrasenya(email) {
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
             },
-            body: JSON.stringify({email:email}) // Ajustar el cuerpo según sea necesario
+            body: JSON.stringify({email:email, contraseña: password}) // Ajustar el cuerpo según sea necesario
         });
 
         if (!respuesta.ok) {
             throw new Error('La solicitud no fue exitosa');
         }
-
         // Obtener los datos en formato JSON
         const datos = await respuesta.json();
         console.log('Datos recibidos desde el servidor local:', datos);
+        return datos;
     } catch (error) {
         console.error('Error:', error);
     }
@@ -55,7 +55,6 @@ async function comprobarContrasenya(email) {
 
 export {comprobarContrasenya};
 
-const emailUsuario = localStorage.getItem('usuarioLogeado');
-comprobarContrasenya(emailUsuario)
+
 
 

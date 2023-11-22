@@ -5,6 +5,10 @@ const progresoSeguridad = document.getElementById("progreso-seguridad");
 const btonRecuperar = document.getElementById("boton-recuperar-contrasenya");
 var txtSeguridad = document.getElementById("txt-seguridad");
 
+const inputContrasenyaActual = document.getElementById("contrasenyaAnterior");
+const inputnuevaContrasenya = document.getElementById("nuevaContrasenya");
+const inputconfContrasenya = document.getElementById("confNuevaContrasenya");
+
 lvlSeguridad.classList.add("hidden");
 contSeg.classList.add("hidden");
 progresoSeguridad.classList.add("hidden");
@@ -13,32 +17,52 @@ btonRecuperar.classList.remove("crecer");
 btonRecuperar.disable= true;
 
 const emailUsuario = localStorage.getItem('usuarioLogeado');
-
 console.log(emailUsuario)
 
-import { obtenerDatosUsuario } from './LogicaFake/LogicaFakePerfil.js';
+import { comprobarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya.js';
+import { cambiarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya.js';
 
-obtenerDatosUsuario(emailUsuario)
-    .then(resultado => {
-        console.log(resultado)
-    })
-    .catch((error) => {
-        console.error('Error en la promesa:', error);
-    });
+btonRecuperar.addEventListener('click',nuevacont);
 
-document.getElementById("restablecer-contrasenya").addEventListener('submit',cambiarContrasenya);
-document.getElementById("restablecer-contrasenya").addEventListener('input',seguridadContrasenya);
+//document.getElementById("nuevaContrasenya").addEventListener('input',seguridadContrasenya);
 
-async function cambiarContrasenya(event){
+async function nuevacont(event){
     event.preventDefault();
-    var nuevaContrasenya = document.getElementById("nuevaContrasenya").value;
-    var confNuevaContrasenya = document.getElementById("confNuevaContrasenya").value;
+
+    var nuevaContrasenya = inputnuevaContrasenya.value;
+    var confNuevaContrasenya = inputconfContrasenya.value;
+    let introduccirContActual = inputContrasenyaActual.value;
+
+    let passwordCifrada = await hashPassword(introduccirContActual)
+    let comprobar = await comprobarContrasenya(emailUsuario, passwordCifrada)
+    console.log("comprobacion" + comprobar)
+    if(comprobar=== true){
+        console.log("AAAAA")
+        if(nuevaContrasenya===confNuevaContrasenya){
+            console.log("SE CAMBIO")
+            let passwordNuevaCifrada = await hashPassword(nuevaContrasenya)
+            await cambiarContrasenya(emailUsuario, passwordNuevaCifrada)
+
+        }
+    }
+    /*
+
     if(nuevaContrasenya !== confNuevaContrasenya){
         errorLabel.classList.remove("hidden");
     }else{
         errorLabel.classList.add("hidden");
-    }
+    }*/
 }
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
 function seguridadContrasenya(){
     var nuevaContrasenya = document.getElementById("nuevaContrasenya").value;
 
