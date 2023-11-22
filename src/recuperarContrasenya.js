@@ -5,6 +5,8 @@ const progresoSeguridad = document.getElementById("progreso-seguridad");
 const btonRecuperar = document.getElementById("boton-recuperar-contrasenya");
 var txtSeguridad = document.getElementById("txt-seguridad");
 
+const emailUsuario = localStorage.getItem('usuarioLogeado');
+
 lvlSeguridad.classList.add("hidden");
 contSeg.classList.add("hidden");
 progresoSeguridad.classList.add("hidden");
@@ -15,6 +17,16 @@ btonRecuperar.disable= true;
 
 document.getElementById("restablecer-contrasenya").addEventListener('submit',cambiarContrasenya);
 document.getElementById("restablecer-contrasenya").addEventListener('input',seguridadContrasenya);
+
+import { obtenerDatosUsuario } from './LogicaFake/LogicaFakePerfil.js';
+
+obtenerDatosUsuario(emailUsuario)
+    .then(resultado => {
+        console.log(resultado)
+    })
+    .catch((error) => {
+        console.error('Error en la promesa:', error);
+    });
 
 async function cambiarContrasenya(event){
     event.preventDefault();

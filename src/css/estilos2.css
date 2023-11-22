@@ -72,7 +72,7 @@ html{
 .contenedores-sombra{
     background-color: var(--blanco-contenedores);
     border-radius: 30px;
-    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.15);
 }
 dialog{
     width: 350px;

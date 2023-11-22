@@ -1,4 +1,4 @@
-/**
+/*
  * @brief Esta función obtiene datos desde un servidor local y los muestra en la página web.
  * 
  * Esta función realiza una solicitud GET a un servidor local y muestra los datos en una página web.
@@ -30,3 +30,5 @@ async function obtenerDatosUsuario(emailUsuario) {
     }
 }
 export {obtenerDatosUsuario};
+
+

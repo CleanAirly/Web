@@ -5,7 +5,7 @@ var valorCreciente =50;
 var start= 0;
 
 const emailUsuario = localStorage.getItem('usuarioLogeado');
-import { nombreUsuarioGet } from './LogicaFake/LogicaFakeHome.js';
+import { nombreUsuarioGet } from './LogicaFake/LogicaFakeHome4.js';
 
 nombreUsuarioGet(emailUsuario)
   .then((resultado) => {
@@ -18,7 +18,7 @@ miH1.textContent = '¡Hola, '+resultado+'!';
     console.error('Error en la promesa:', error);
   });
 
-import { ultimaMedidaGet } from './LogicaFake/LogicaFakeHome.js';
+import { ultimaMedidaGet } from './LogicaFake/LogicaFakeHome4.js';
 
 ultimaMedidaGet(emailUsuario)
     .then((resultado) => {
@@ -83,7 +83,7 @@ function setProgressBar(progress) {
 var listaInstantes = [];
 var listaValores = [];
 
-import { medidasGet } from './LogicaFake/LogicaFakeHome.js';
+import { medidasGet } from './LogicaFake/LogicaFakeHome4.js';
 medidasGet(emailUsuario)
     .then((resultado) => {
         console.log(resultado);

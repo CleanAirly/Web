@@ -12,6 +12,19 @@ txtSeguridad.classList.add("hidden");
 btonRecuperar.classList.remove("crecer");
 btonRecuperar.disable= true;
 
+const emailUsuario = localStorage.getItem('usuarioLogeado');
+
+console.log(emailUsuario)
+
+import { obtenerDatosUsuario } from './LogicaFake/LogicaFakePerfil.js';
+
+obtenerDatosUsuario(emailUsuario)
+    .then(resultado => {
+        console.log(resultado)
+    })
+    .catch((error) => {
+        console.error('Error en la promesa:', error);
+    });
 
 document.getElementById("restablecer-contrasenya").addEventListener('submit',cambiarContrasenya);
 document.getElementById("restablecer-contrasenya").addEventListener('input',seguridadContrasenya);

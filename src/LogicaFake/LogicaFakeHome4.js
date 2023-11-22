@@ -1,6 +1,6 @@
 /**
  * @brief Esta función obtiene datos desde un servidor local y los muestra en la página web.
- * 
+ *
  * Esta función realiza una solicitud GET a un servidor local y muestra los datos en una página web.
  * Si la solicitud no es exitosa, se maneja un error.
  */
@@ -35,7 +35,7 @@ export {nombreUsuarioGet};
     // Buscar ultima medida por el correo
     try {
         // Realizar una solicitud GET al servidor local
-        const respuesta = await fetch('http://192.168.66.1:3001/api/sensor/medida', {
+        const respuesta = await fetch('http://192.168.1.57:3001/api/sensor/medida', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
@@ -52,7 +52,7 @@ export {nombreUsuarioGet};
         console.log('Medida recibida:', datos);
 
         return datos;
-        
+
     } catch (error) {
         console.error('Error:', error);
     }

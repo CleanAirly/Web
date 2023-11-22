@@ -4,6 +4,9 @@
  * Esta función realiza una solicitud GET a un servidor local y muestra los datos en una página web.
  * Si la solicitud no es exitosa, se maneja un error.
  */
+
+//const API_KEY = '2a11be9734174d68200fb34cdacbf3d5-5d2b1caa-33228a5d';
+//const DOMAIN = 'sandboxac0a8042f09249dc800a416cf3c43b35.mailgun.org';
 async function emailUsuarioGet(emailUsuario) {
     // Buscar nombre por correo
     try {
@@ -30,6 +33,7 @@ async function emailUsuarioGet(emailUsuario) {
 }
 
 export {emailUsuarioGet};
+
 
 const boton = document.getElementById('boton-enviar-email');
 const emailInput = document.getElementById("emailRecuperacion");
@@ -64,6 +68,27 @@ async function estaNoEsta() {
     for(var i = 0; i<datosObtenidos.length; i++){
         if(datosObtenidos[i].email== emails){
             console.log("FUNCIONA")
+            await enviarCorreo(emails);
         }
     }
 }
+
+const enviarCorreo = async (destinatario, asunto, contenido) => {
+    try {
+        const response = await fetch('http://192.168.1.57:3001/api/enviar-correo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ destinatario, asunto, contenido })
+        });
+
+        const data = await response.json();
+        console.log(data.message); // Mensaje de confirmación o error del servidor
+    } catch (error) {
+        console.error('Error al enviar el correo desde el cliente:', error);
+    }
+};
+
+// Llamada a la función para enviar el correo
+enviarCorreo('contact.cleanairly@gmail.com', 'Asunto del correo', 'Contenido del correo');
