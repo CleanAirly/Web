@@ -26,8 +26,8 @@ function cerrarSalir(){
     popupCerrarSesion.style.display="none";
 }
 
-aceptarCerrarSesion.addEventListener('click',cerrarSalir);
-cancelarCerrarSesion.addEventListener('click',cerrarSalir);
+aceptarCerrarSesion.addEventListener('click', (e) => cerrarSalir(e));
+cancelarCerrarSesion.addEventListener('click', (e) => cerrarSalir(e));
 
 
 // Agrega un event listener para el evento de clic (click)
