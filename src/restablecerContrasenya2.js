@@ -13,9 +13,7 @@ const popupCancelar = document.getElementById("popup-cancelar-password");
 const aceptarSalir= document.getElementById("aceptar-salir");
 const cancelarSalir= document.getElementById("cancelar-salir");
 
-
 popupCancelar.style.display="none";
-
 
 //errores --------------------------------------------------------------------------------------------------------------
 const errorLabel = document.getElementById("error");
@@ -36,8 +34,8 @@ txtSeguridad.classList.add("hidden");
 // obtener los datos ---------------------------------------------------------------------------------------------------
 const emailUsuario = localStorage.getItem('usuarioLogeado');
 
-import { comprobarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya.js';
-import { cambiarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya.js';
+import { comprobarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya2.js';
+import { cambiarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya2.js';
 
 btonRecuperar.addEventListener('click',nuevaPassword);
 
@@ -64,6 +62,7 @@ async function nuevaPassword(event){
             errorLabel.classList.add("hidden");
             let passwordNuevaCifrada = await hashPassword(nuevaContrasenya)
             await cambiarContrasenya(emailUsuario, passwordNuevaCifrada)
+            window.location.href='perfil2.html'
         }else{
             errorLabel.classList.remove("hidden");
             console.log("ERROR")

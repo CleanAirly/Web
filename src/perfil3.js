@@ -61,7 +61,7 @@ botonCerrarSesion.addEventListener('click', () => {
 //Aceptar el cierre de sesion
 function realizarCierreDeSesion(){
     localStorage.removeItem('usuarioLogeado');
-    location.href = 'landing.html';
+    location.href = 'index.html';
     popupCerrarSesion.close();
     popupCerrarSesion.style.display="none";
 }

@@ -71,10 +71,7 @@ p{
     margin-bottom: 1rem;
     color: var(--txt-error);
 }
-dialog button{
-    width: 48%;
-    height: 30px;
-}
+
 
 @media screen and (min-width:750px){
     form{

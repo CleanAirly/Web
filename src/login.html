@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PBiometria</title>
-    <link rel="stylesheet" href="css/estilos3.css">
+    <link rel="stylesheet" href="css/estilos4.css">
     <link rel="stylesheet" href="css/login3.css">
     <link rel="stylesheet" href="css/animaciones.css">
     <link rel="stylesheet" href="css/menu.css">
@@ -14,10 +14,10 @@
         <!------------------------------------------------ MENU ------------------------------------------------>
         <header>
             <nav id="main-menu" class="activo" role="menubar">
-                <a href="landing.html" ><img src="images/cleanAirlyLogo2.png" id="logo" alt="logo"></a>
+                <a href="index.html" ><img src="images/cleanAirlyLogo2.webp" id="logo" alt="logo"></a>
                 <ul>
-                    <li><a href="landing.html">Inicio</a></li>
-                    <li><a href="landing.html#contactanos">Contáctanos</a></li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#contactanos">Contáctanos</a></li>
                     <li><a href="#" class="pagina-actual" id="sesion">Login</a></li>
                 </ul>
                 
@@ -31,35 +31,27 @@
 
         <!------------------------------------------------ FOTO ------------------------------------------------>
 
-        <img src="images/mockups.svg" id="foto-banco" alt="fotoLogin">
+        <img src="images/mockups.webp" id="foto-banco" alt="fotoLogin">
         <div id="contenedor-contenedores-login" class="centrar">
 
             <!------------------------------------------------ LOGIN ------------------------------------------------>
 
             <h1> Descubre el aire que respiras</h1>
             <div id="contenedor-formulario" class="centrar">
-                <div id="switch" class="recuadros-inputs" onclick="switchCambiar()" >
-                    <div class="textoSwitch centrar">Inicia sesión</div>
-                    <div class="textoSwitch centrar">Registrarse</div>
 
-                    <div id="switch-bg" class="boton boton-azul centrar">Inicia sesión</div>
-                    
-                </div>
                 <form id="login-form">
+                        <h2>Inicia sesión</h2>
+
                         <label for="usuario" class="subtitulo">Usuario:</label>
                         <input type="text" name="usuario" id="usuario" class="recuadros-inputs" required>
-                        <span id="email-error" style="color: red;"></span>
+                        <span id="email-error"></span>
 
                         <label for="password">Contraseña:</label>
                         <input type="password" name="password" id="password" class="recuadros-inputs" required>
 
-                        <label for="confirm-password" id="txtConfirmar" class="hidden">Confirmar contraseña:</label>
-                        <input type="password" name="confirm-password" id="confirm-password" class="recuadros-inputs hidden">
-                        <span id="password-match-error" style="color: red;"></span>
+                        <a href="introduccirEmailContr.html"><p>¿Has olvidado tu contraseña?</p></a>
 
-                        <label id="error" class="hidden">Credenciales incorrectas</label>
-            
-                        <input type="submit" value="Acceder" id="boton-acceder" class="crecer boton boton-azul">
+                    <input type="submit" value="Acceder" id="boton-acceder" class="crecer boton boton-azul">
                 </form>
                 
             
@@ -70,7 +62,6 @@
     </section>
 
     <script src="menu2.js"></script>
-    <script src="login.js"></script>
-    <script src="./LogicaFake/LogicaFakeLogin2.js"></script>
+    <script src="LogicaFake/LogicaFakeLogin3.js"></script>
 </body>
 </html>
