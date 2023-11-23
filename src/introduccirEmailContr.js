@@ -16,7 +16,7 @@ botonEnviar.addEventListener('click', (event) => {
 
 async function estaNoEsta() {
     let emails = emailInput.value;
-    const datosObtenidos = await emailUsuarioGet(emails);
+    const datosObtenidos = await emailUsuarioGet();
     console.log(emails)
     console.log(datosObtenidos)
     console.log(datosObtenidos.length)

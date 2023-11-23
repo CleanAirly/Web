@@ -5,51 +5,61 @@
  * Si la solicitud no es exitosa, se maneja un error.
  */
 
-    const emailInput = document.getElementById('usuario');
-    const emailError = document.getElementById('email-error');
-    const passwordInput = document.getElementById('password');
+const emailInput = document.getElementById('usuario');
+const emailError = document.getElementById('email-error');
+const passwordInput = document.getElementById('password');
 
-    // Expresión regular para validar el correo electrónico
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+// Expresión regular para validar el correo electrónico
+const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-    // Validación de correo electrónico en tiempo real
-    emailInput.addEventListener('input', function () {
-        const email = emailInput.value;
-
-        if (!emailRegex.test(email)) {
-            emailError.textContent = 'Correo no válido';
-        } else {
-            emailError.textContent = '';
+(async () => {
+    if(localStorage.getItem('usuarioRole') !== null){
+        if(localStorage.getItem('usuarioRole') === "usuario"){
+            location.href = 'home.html';
+        } else if(localStorage.getItem('usuarioRole') === "admin"){
+            location.href = 'admin.html';
         }
-    });
+    }
+})();
 
-    const loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+// Validación de correo electrónico en tiempo real
+emailInput.addEventListener('input', function () {
+    const email = emailInput.value;
 
-        const email = emailInput.value;
-        const password = passwordInput.value;
+    if (!emailRegex.test(email)) {
+        emailError.textContent = 'Correo no válido';
+    } else {
+        emailError.textContent = '';
+    }
+});
 
-        emailCorrecto = false;
-        passwordCorrecto = false;
+const loginForm = document.getElementById('login-form');
+loginForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    emailCorrecto = false;
+    passwordCorrecto = false;
     
-        if (!emailRegex.test(email)) {
-            emailError.textContent = 'Correo no válido';
-        } else {
-            emailError.textContent = '';
-            emailCorrecto = true;
-        }
+    if (!emailRegex.test(email)) {
+        emailError.textContent = 'Correo no válido';
+    } else {
+        emailError.textContent = '';
+        emailCorrecto = true;
+    }
 
-        if (emailCorrecto) {
-            hashPassword(password).then(hash => {
-                console.log('Contraseña hasheada (SHA-256):', hash);
-                iniciarSesion();
-            }).catch(error => {
-                console.error('Error al hashear la contraseña:', error);
-            });
+    if (emailCorrecto) {
+        hashPassword(password).then(hash => {
+            console.log('Contraseña hasheada (SHA-256):', hash);
+            iniciarSesion();
+        }).catch(error => {
+            console.error('Error al hashear la contraseña:', error);
+        });
                 
-            }
-    });
+    }
+});
 
 // Función para hashear una contraseña usando SHA-256
 async function hashPassword(password) {
@@ -72,7 +82,7 @@ async function iniciarSesion() {
         const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         
         // Realizar una solicitud GET al servidor local
-        const respuesta = await fetch('http://192.168.1.57:3001/api/sensor/login', {
+        const respuesta = await fetch('http://192.168.1.47:3001/api/sensor/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
@@ -87,16 +97,17 @@ async function iniciarSesion() {
         // Obtener los datos en formato JSON
         const datos = await respuesta.json();
         console.log('Datos recibidos desde el servidor local:', datos);
-        if(datos == false){
+        if(datos === true){
+            localStorage.setItem('usuarioLogeado', email);
+            localStorage.setItem('usuarioRole', "usuario");
+            location.href = 'home.html';
+        } else if(datos === "admin"){
+            localStorage.setItem('usuarioLogeado', email);
+            localStorage.setItem('usuarioRole', "admin");
+            location.href = 'admin.html';
+        } else {
             emailError.textContent = 'correo o contraseña incorrectos';
         }
-        else if(datos == true){
-            // guarda el email del usuario logueado para usarlo en otros archivos
-            localStorage.setItem('usuarioLogeado', email);
-            // Redirige a la home.html
-            window.location.href = 'home.html';
-        }
-        
     } catch (error) {
         console.error('Error:', error);
     }
