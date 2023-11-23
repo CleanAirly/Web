@@ -7,7 +7,7 @@
 async function cambiarContrasenya(email, contrasenya) {
     try {
         // Realizar una solicitud PUT al servidor local
-        const respuesta = await fetch('http://192.168.1.57:3001/api/sensor/cambiarPassword', {
+        const respuesta = await fetch('http://192.168.1.47:3001/api/sensor/cambiarPassword', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
@@ -32,7 +32,7 @@ export {cambiarContrasenya};
 async function comprobarContrasenya(email, password) {
     try {
         // Realizar una solicitud PUT al servidor local
-        const respuesta = await fetch('http://192.168.1.57:3001/api/sensor/comprobarPassword', {
+        const respuesta = await fetch('http://192.168.1.47:3001/api/sensor/comprobarPassword', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
@@ -53,7 +53,3 @@ async function comprobarContrasenya(email, password) {
 }
 
 export {comprobarContrasenya};
-
-
-
-

@@ -17,7 +17,7 @@ botonEnviar.addEventListener('click', (event) => {
 
 async function estaNoEsta() {
     let emails = emailInput.value;
-    const datosObtenidos = await emailUsuarioGet(emails);
+    const datosObtenidos = await emailUsuarioGet();
     console.log(emails)
     for(var i = 0; i<datosObtenidos.length; i++){
         if(datosObtenidos[i].email=== emails){

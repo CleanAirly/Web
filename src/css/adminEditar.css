@@ -49,4 +49,6 @@ dialog button{
         width: 40%;
     }
 }
-
+.noVisible{
+    visibility: hidden;
+}

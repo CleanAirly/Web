@@ -4,15 +4,15 @@
  * Esta función realiza una solicitud GET a un servidor local y muestra los datos en una página web.
  * Si la solicitud no es exitosa, se maneja un error.
  */
-async function emailUsuarioGet(emailUsuario) {
+async function emailUsuarioGet() {
     // Buscar nombre por correo
     try {
-        const respuesta = await fetch('http://192.168.1.57:3001/api/sensor/emailNoAdmins', {
+        const respuesta = await fetch('http://192.168.1.47:3001/api/sensor/emailNoAdmins', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
             },
-            body: JSON.stringify({'email':emailUsuario}) // Ajustar el cuerpo según sea necesario
+            body: JSON.stringify({}) // Ajustar el cuerpo según sea necesario
         });
 
         if (!respuesta.ok) {
@@ -30,5 +30,3 @@ async function emailUsuarioGet(emailUsuario) {
 }
 
 export {emailUsuarioGet};
-
-
