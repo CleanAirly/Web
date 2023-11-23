@@ -39,7 +39,7 @@
 
             <label for="emailRecuperacion"><h3>Introduce tu email:</h3></label>
             <input type="email" name="emailRecuperacion" id="emailRecuperacion" class="recuadros-inputs" required>
-            
+
             <p>A esta cuenta de email te enviaremos un correo para que puedas recuperar tu contraseña</p>
 
 
@@ -58,7 +58,13 @@
         </dialog>
 
     </section>
+
+
     <script src="menu2.js"></script>
     <script type="module" src="introduccirEmailContr.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        emailjs.init('0jpZYQCN8Gc5osRv7')
+    </script>
 </body>
 </html>
