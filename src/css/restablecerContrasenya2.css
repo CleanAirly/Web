@@ -53,6 +53,10 @@ input{
     border-radius: 10px;
     transition: width 0.5s ease-in-out;
 }
+dialog button{
+    width: 48%;
+    height: 30px;
+}
 p{
     font-size: 15px;
 }

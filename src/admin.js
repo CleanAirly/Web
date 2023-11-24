@@ -1,8 +1,43 @@
+// RUTA DEL SERVIDOR ---------------------------------------------------------------------------------------------------
+let RUTA = 'http://192.168.1.47:3001/api/sensor';
+
 // CERRAR SESION - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 const botonCerrarSesion = document.getElementById("cerrar-sesion");
 const popupCerrarSesion = document.getElementById("popup-cerrar-sesion");
 const aceptarCerrarSesion = document.getElementById("aceptar-cerrar");
 const cancelarCerrarSesion = document.getElementById("cancelar-cerrar")
+
+// OPTION GROUP
+const optionGroup = document.getElementById("optgroup");
+
+optionGroup.addEventListener('change', function (){
+    let opcionSeleccionada = this.options[this.selectedIndex].text;
+    if(opcionSeleccionada === "Nodos inactivos"){
+        filtro("inactivo")
+    } else if(opcionSeleccionada === "Sin filtro"){
+        filtro("")
+    }
+});
+
+function filtro(input){
+    let usuariosCumplenBusqueda = [];
+
+    for (let i = 0; i < dataUsuarios.length; i++) {
+        if (dataUsuarios[i].estadoSonda.toLowerCase().includes(input)) {
+            usuariosCumplenBusqueda.push(dataUsuarios[i]);
+        }
+    }
+    ultimaPagina = Math.ceil(usuariosCumplenBusqueda.length / usuariosPorPagina);
+
+    mostrarOcultarIconos();
+
+    limpiarTabla();
+
+    let inicio = (pagina - 1) * usuariosPorPagina;
+    for(let i = inicio; i<inicio + usuariosPorPagina; i++){
+        if(usuariosCumplenBusqueda[i]) createUserRow(usuariosCumplenBusqueda[i].nombre, usuariosCumplenBusqueda[i].email, usuariosCumplenBusqueda[i].telefono, usuariosCumplenBusqueda[i].idSonda, usuariosCumplenBusqueda[i].estadoSonda);
+    }
+}
 
 botonCerrarSesion.addEventListener('click', () => {
     popupCerrarSesion.showModal();
@@ -77,11 +112,11 @@ let usuariosPorPagina = 6;
         document.body.classList.remove("noVisible");
 
         // OBTENGO LOS EMAILS DE TODOS LOS USUARIOS CON UNA ARRAY DE {'email':'correo@email.com'}
-        let emailUsuarios = await getAllEmails();
+        let emailUsuarios = await emailNoAdmins();
 
         // POR CADA OBJETO (usuario) OBTENGO TODOS SUS DATOS
         for(let i= 0; i<emailUsuarios.length; i++){
-            let data = await getDataFromEmail(emailUsuarios[i].email)
+            let data = await nombreUsuarioGet(emailUsuarios[i].email)
             dataUsuarios.push(data);
         }
 
@@ -97,7 +132,7 @@ let usuariosPorPagina = 6;
 
         // POR CADA USUARIO OBTENGO SI SU SENSOR SE ENCUENTRA ACTIVO O INACTIVO
         for(let i = 0; i<dataUsuarios.length; i++){
-            dataUsuarios[i].estadoSonda = await getSondaState(dataUsuarios[i].email);
+            dataUsuarios[i].estadoSonda = await inactividadSensor(dataUsuarios[i].email);
         }
 
         // CARGO LOS USUARIOS AL HTML
@@ -106,44 +141,56 @@ let usuariosPorPagina = 6;
     }
 })();
 
-// FUNCIÓN PARA OBTENER EL ESTADO DEL SENSOR DEL USUARIO - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-async function getSondaState(email){
-    let respuesta = await fetch('http://192.168.1.47:3001/api/sensor/inactividadSensor', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({email: email})
-    });
-    return await respuesta.json();
+// FUNCIÓN PARA OBTENER EL ESTADO DEL SENSOR DEL USUARIO ---------------------------------------------------------------
+async function inactividadSensor(email){
+    try {
+        let respuesta = await fetch(RUTA+'/inactividadSensor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: email})
+        });
+        return await respuesta.json();
+    } catch (e) {
+        console.log("Error: "+e);
+    }
 }
 
-// FUNCIÓN PARA OBTENER TODOS LOS EMAILS DE USUARIOS QUE NO SEA ADMINISTRADORES - - - - - - - - - - - - - - - - - - - -
-async function getAllEmails(){
-    let respuesta = await fetch('http://192.168.1.47:3001/api/sensor/emailNoAdmins', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({})
-    });
-    return await respuesta.json()
+// FUNCIÓN PARA OBTENER TODOS LOS EMAILS DE USUARIOS QUE NO SEA ADMINISTRADORES ----------------------------------------
+async function emailNoAdmins(){
+    try{
+        let respuesta = await fetch(RUTA+'/emailNoAdmins', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        });
+        return await respuesta.json()
+    } catch (e) {
+        console.log("Error: "+e);
+    }
 }
 
-// FUNCIÓN PARA OBTENER LOS DATOS DEL USUARIO A TRAVÉS DE SU EMAIL - - - - - - - - - - - - - - - - - - - - - - - - - - -
-async function getDataFromEmail(email){
-    let respuesta = await fetch('http://192.168.1.47:3001/api/sensor/usuario', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({email: email})
-    });
-    return await respuesta.json()
+// FUNCIÓN PARA OBTENER LOS DATOS DEL USUARIO A TRAVÉS DE SU EMAIL -----------------------------------------------------
+async function nombreUsuarioGet(email){
+    try{
+        let respuesta = await fetch(RUTA+'/usuario', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: email})
+        });
+        return await respuesta.json()
+    } catch (e) {
+        console.log("Error: "+e);
+    }
 }
 
 // FUNCIÓN PARA CREAR LOS ELEMENTOS HTML QUE MUESTRAN LA INFORMACIÓN DEL USUARIO - - - - - - - - - - - - - - - - - - - -
-function createUserRow(nombre, email, telefono, idSensor, estadoSensor){
+async function createUserRow(nombre, email, telefono, idSensor, estadoSensor){
     // OBTENGO DONDE SE INSERTARÁ EL USUARIO
     const insertarAqui = document.getElementById("contenedor-tabla");
     const aPartirDeAqui = document.getElementById("contenedor-paginas");
@@ -157,10 +204,10 @@ function createUserRow(nombre, email, telefono, idSensor, estadoSensor){
     contenedorCheckbox.classList.add("contenedor-checkbox")
     contenedorCheckbox.classList.add("centrar")
 
-    const borrar = document.createElement("img");
-    borrar.setAttribute("src", "images/icono_borrar.svg")
-    borrar.setAttribute("onclick", "popUpBorrarUsuario('"+email+"')")
-    borrar.classList.add("checkbox")
+    //const borrar = document.createElement("img");
+    //borrar.setAttribute("src", "images/icono_borrar.svg")
+    //borrar.setAttribute("onclick", "popUpBorrarUsuario('"+email+"')")
+    //borrar.classList.add("checkbox")
 
     const editar = document.createElement("img");
     editar.setAttribute("src", "images/icono_editar.svg")
@@ -189,9 +236,10 @@ function createUserRow(nombre, email, telefono, idSensor, estadoSensor){
 
     const contenedorTiempo = document.createElement("div");
     contenedorTiempo.classList.add("contenedor-tiempo")
+    contenedorTiempo.innerHTML = await tiempoEnElEstadoActual(email)
 
     // JUNTO LOS ELEMENTOS SEGÚN EL ORDEN ESTABLECIDO
-    contenedorCheckbox.appendChild(borrar);
+    //contenedorCheckbox.appendChild(borrar);
     contenedorCheckbox.appendChild(editar);
     contenedorUsuario.appendChild(contenedorCheckbox);
     contenedorUsuario.appendChild(contenedorNombre);
@@ -276,7 +324,7 @@ function buscarUsuario(){
 
     let inicio = (pagina - 1) * usuariosPorPagina;
     for(let i = inicio; i<inicio + usuariosPorPagina; i++){
-        if(usuariosCumplenBusqueda[i]) createUserRow(usuariosCumplenBusqueda[i].nombre, usuariosCumplenBusqueda[i].email, usuariosCumplenBusqueda[i].telefono, usuariosCumplenBusqueda[i].idSonda);
+        if(usuariosCumplenBusqueda[i]) createUserRow(usuariosCumplenBusqueda[i].nombre, usuariosCumplenBusqueda[i].email, usuariosCumplenBusqueda[i].telefono, usuariosCumplenBusqueda[i].idSonda, usuariosCumplenBusqueda[i].estadoSonda,);
     }
 }
 
@@ -299,4 +347,37 @@ function redireccion(email){
         }
     })
     location.href = "adminEditar.html";
+}
+
+async function ultimaMedidaGet(email){
+    try{
+        let respuesta = await fetch(RUTA+'/medida', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: email})
+        });
+        return await respuesta.json()
+    } catch (e) {
+        console.log("Error: "+e);
+    }
+}
+
+async function tiempoEnElEstadoActual(email){
+    let ultimaMedida = await ultimaMedidaGet(email);
+    if(ultimaMedida !== null){
+        const fechaActual = new Date();
+        const fechaUltimaMedida = new Date(ultimaMedida.instante);
+        const diferenciaTiempo = fechaActual - fechaUltimaMedida;
+
+        // Calcular los días, horas y minutos
+        const dias = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diferenciaTiempo % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((diferenciaTiempo % (1000 * 60 * 60)) / (1000 * 60));
+
+        return `${dias} días, ${horas} horas, ${minutos} minutos`;
+    } else {
+        return "sin datos"
+    }
 }

@@ -13,12 +13,15 @@ const passwordInput = document.getElementById('password');
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 (async () => {
+    // VERIFICAR SI EXISTE UNA SESION INICIADA
     if(localStorage.getItem('usuarioRole') !== null){
         if(localStorage.getItem('usuarioRole') === "usuario"){
             location.href = 'home.html';
         } else if(localStorage.getItem('usuarioRole') === "admin"){
             location.href = 'admin.html';
         }
+    } else {
+        document.body.classList.remove("hidden");
     }
 })();
 
@@ -82,7 +85,7 @@ async function iniciarSesion() {
         const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         
         // Realizar una solicitud GET al servidor local
-        const respuesta = await fetch('http://192.168.1.57:3001/api/sensor/login', {
+        const respuesta = await fetch('http://192.168.1.47:3001/api/sensor/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario

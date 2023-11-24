@@ -101,12 +101,12 @@ function seguridadContrasenya(){
 
     if(nuevaContrasenya.length===0){
         porcentaje= 0
-        txtSeguridad.textContent="Tu contraseña debe tener al menos 8 carácteres";
+        txtSeguridad.textContent="Tu contraseña debe tener al menos 8 carácteres,  una letra y un número";
         passwordCorrecta = false
     }
     else if (tieneLetras && !tieneNumeros && !tieneMayusculas || !tieneLetras && tieneNumeros && !tieneMayusculas || !tieneLetras && !tieneNumeros && tieneMayusculas|| nuevaContrasenya.length<8) {
         porcentaje = 20;
-        txtSeguridad.textContent="Tu contraseña debe tener al menos 8 carácteres";
+        txtSeguridad.textContent="Tu contraseña debe tener al menos 8 carácteres,  una letra y un número";
         progresoSeguridad.style.backgroundColor= "var(--txt-error)";
         passwordCorrecta = false
 
@@ -114,7 +114,7 @@ function seguridadContrasenya(){
         porcentaje = 20;
         txtSeguridad.textContent="Tu contraseña es poco segura";
         progresoSeguridad.style.backgroundColor= "var(--txt-error)";
-        passwordCorrecta = false
+        passwordCorrecta = true
     }
     else if (tieneLetras && tieneNumeros && !tieneMayusculas && nuevaContrasenya.length>=8|| !tieneLetras && tieneNumeros && tieneMayusculas && nuevaContrasenya.length>=8 || tieneLetras && !tieneNumeros && tieneMayusculas && nuevaContrasenya.length>=8) {
         porcentaje = 50;

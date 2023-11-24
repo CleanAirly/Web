@@ -1,8 +1,8 @@
-/* FONDO ------------------------------------------------------------------------------------------------ */
+/* * FONDO ------------------------------------------------------------------------------------------------ */
 section{
     height: 100vh;
     background-image: url("../images/fondo_circulos.svg");
-    background-size: cover; 
+    background-size: cover;
 }
 
 h1{
@@ -42,12 +42,12 @@ h2{
 }
 
 .progress-bar-fill {
-    
+
     stroke-width: 20;
     stroke-dasharray: 596.9;
     stroke-dashoffset: 596.9;
     animation: fill-progress 2s ease-in-out forwards;
-    transform: rotate(-90deg); 
+    transform: rotate(-90deg);
     transform-origin: 50% 50%;
 }
 
@@ -55,19 +55,19 @@ h2{
     from {
         stroke-dashoffset: 596.9;
     }
-} 
+}
 
 #texto-informativo {
     z-index: 9;
     position: absolute;
-    top: 48%;
-    left: 40%;
+    top: 37%;
+    left: 36.5%;
     transform: translate(-50%, -50%);
 }
 
 h4{
     margin: 1rem 0;
-    height: 300;
+    font-weight: 300;
     font-size: 14px;
 }
 
@@ -80,10 +80,7 @@ h4{
     width: 300px;
     height: 175px;
 }
-/* #graficos_linea{
-    width: 250px;
-    height: 150px;
-} */
+
 .contenedor-leyenda{
     margin-top: 0.5rem;
     width: 100%;
@@ -131,19 +128,35 @@ p{
     align-items: center;
     justify-content: start;
 }
- @media screen and (max-width:1400px){
+.hidden{
+    display: none;
+}
+
+@media screen and (max-width:1400px){
     #texto-informativo{
-        left: 38%;
+        left: 33%;
     }
 
 }
 @media screen and (max-width:1300px){
     #texto-informativo{
-        left: 35%;
+        left: 31%;
     }
 
 }
-@media screen and (max-width:800px){
+@media screen and (max-width:1050px){
+    #texto-informativo{
+        left: 28%;
+    }
+
+}
+@media screen and (max-width:900px){
+    #texto-informativo{
+        left: 25%;
+    }
+
+}
+@media screen and (max-width:850px){
     h1{
         margin-top:10rem;
     }
@@ -157,6 +170,10 @@ p{
     .contenedor{
         margin-bottom: 2rem;
     }
+    .columna-derecha {
+        width: 200px;
+    }
+
 
 }
 /* @media screen and (mix-width:1600px){
