@@ -2,7 +2,7 @@
     --menu-height: 7rem;
 }
 .pagina-actual{
-    width: 100px;
+    width: 125px;
     height: 25px;
     border-radius: 30px;
     background-color: var(--botones);

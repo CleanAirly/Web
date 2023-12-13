@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil - Pbiometria</title>
   <link rel="stylesheet" href="css/estilos4.css">
-  <link rel="stylesheet" href="css/nuevoPerfil.css">
+  <link rel="stylesheet" href="css/nuevoPerfil2.css">
   <link rel="stylesheet" href="css/animaciones.css">
   <link rel="stylesheet" href="css/menu.css">
 </head>
@@ -19,7 +19,7 @@
       <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="index.html#contactanos">Contáctanos</a></li>
-        <li><a href="home.html" class="pagina-actual" id="sesion">Mis datos</a></li>
+        <li><a href="home.html" class="pagina-actual centrar" id="sesion">Mis datos</a></li>
       </ul>
       <div class="hamburguesa">
         <div></div>
@@ -36,26 +36,32 @@
     <form class="alinear-izquierda">
       <h1>Tu perfil</h1>
 
-      <label for="nombreUsuario">Nombre:</label>
-      <input type="text" name="nombre" id="nombreUsuario" class="recuadros-inputs" required>
+      <label for="nombre-usuario">Nombre:</label>
+      <input type="text" name="nombre" id="nombre-usuario" class="recuadros-inputs" required>
 
       <h5> Email</h5>
       <div class="recuadros-inputs"><p id="email-usuario">marta@gmail.com</p></div>
 
-      <label for="telefonoUsuario">Teléfono:</label>
-      <input type="number" name="telefono" id="telefonoUsuario" class="recuadros-inputs" required>
+      <label for="telefono-usuario">Teléfono:</label>
+      <input type="number" name="telefono" id="telefono-usuario" class="recuadros-inputs" required>
 
       <label id="error" class="hidden">Credenciales incorrectas</label>
 
       <p id="subrayado">Restablece tu contraseña</p>
 
       <input type="submit" value="Guardar cambios" id="editar-perfil" class="crecer boton boton-azul">
-      <input type="button" value="Cancelar" id="cancelar-editar-perfil" class="crecer boton boton-blanco">
+      <input type="button" value="Cerrar Sesión" id="cerrar-sesion" class="crecer boton boton-blanco">
     </form>
 
     <div id="contenedor-bateria-sensor" class="centrar">
       <h2>Tu sensor</h2>
-      <div id="contenedor-progress-bar"></div>
+      <div id="contenedor-progress-bar" class="centrar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
+          <circle class="progress-bar-background" cx="110" cy="110" r="95" stroke="#E5E5E5" stroke-width="20" />
+          <circle class="progress-bar-fill" cx="110" cy="110" r="95" stroke-linecap="round" stroke-width="20" />
+        </svg>
+        <h3 id="texto-informativo">200 ppm</h3>
+      </div>
       <p>No tienes ninguna alerta</p>
       <p id="problemas-sensor">Id: #647820</p>
       <p>Modelo: Ozoneitor3000</p>
@@ -63,7 +69,6 @@
 
     </div>
 
-    <!--
     <dialog class="centrar contenedores-sombra" id="popup-cerrar-sesion">
       <h3>¿Deseas cerrar la sesión?</h3>
       <div class="botones-pop-up">
@@ -71,11 +76,21 @@
         <button id="cancelar-cerrar" class="crecer boton boton-azul">Cancelar</button>
       </div>
     </dialog>
-    -->
+
+    <dialog class="centrar contenedores-sombra" id="popup-guardar-cambios">
+      <h3>¿Deseas guardar los cambios?</h3>
+      <div class="botones-pop-up">
+        <button id="cancelar-guardar" class="crecer boton boton-blanco">Cancelar</button>
+        <button id="guardar-cambios" class="crecer boton boton-azul">Aceptar</button>
+      </div>
+    </dialog>
+
 
   </section>
 
 <script src="menu2.js"></script>
+<script  type="module" src="nuevoPerfil.js"></script>
+<script src="progressBar.js"></script>
 
 </body>
 </html>

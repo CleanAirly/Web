@@ -1,5 +1,14 @@
+// Inputs ------------------------------------------------------------------------------------------
+const nombreUsuario = document.getElementById('nombre-usuario');
+const txtemailUsuario = document.getElementById("email-usuario");
+const telefonoUsuario = document.getElementById('telefono-usuario');
+
+const idSensor = document.getElementById("problemas-sensor");
+
+const emailUsuario = localStorage.getItem('usuarioLogeado');
+console.log(emailUsuario)
 // Botones ----------------------------------------------------------------------------------------
-const botonEditarPerfil = document.getElementById("editar-perfil");
+const botonGuardarCambios = document.getElementById('editar-perfil');
 const botonCerrarSesion = document.getElementById("cerrar-sesion");
 const cambiarContrasenya = document.getElementById("subrayado");
 
@@ -8,24 +17,23 @@ const popupCerrarSesion = document.getElementById("popup-cerrar-sesion");
 const aceptarCerrarSesion = document.getElementById("aceptar-cerrar");
 const cancelarCerrarSesion = document.getElementById("cancelar-cerrar")
 
+// Pop Up Guardar Cambios ---------------------------------------------------------------------------------------
+const popupGuardar = document.getElementById("popup-guardar-cambios");
+const guardarCambios= document.getElementById("guardar-cambios");
+const cancelarGuardar= document.getElementById("cancelar-guardar");
+
 import { obtenerDatosUsuario } from "./LogicaFake/LogicaFakePerfil.js";
+import { guardarDatosPerfil } from './LogicaFake/LogicaFakeEditarPerfil2.js';
 
 (async () => {
     popupCerrarSesion.style.display="none";
-
-    //Obtener los datos del usuario
-    const emailUsuario = localStorage.getItem('usuarioLogeado');
-
+    popupGuardar.style.display="none";
     await obtenerDatosUsuario(emailUsuario)
         .then(resultado => {
-            const nombreTexto = document.getElementById('nombreUsuario');
-            const emailTexto = document.getElementById('emailUsuario');
-            const telefonoTexto = document.getElementById('telefonoUsuario')
-            nombreTexto.textContent = resultado.nombre;
-            console.log(resultado)
-            console.log(resultado.nombre)
-            emailTexto.textContent = emailUsuario;
-            telefonoTexto.textContent = resultado.telefono;
+            nombreUsuario.value = resultado.nombre;
+            txtemailUsuario.textContent = emailUsuario;
+            telefonoUsuario.value = resultado.telefono;
+            idSensor.textContent = "Id: # " + resultado.idSonda;
 
         })
         .catch((error) => {
@@ -33,17 +41,33 @@ import { obtenerDatosUsuario } from "./LogicaFake/LogicaFakePerfil.js";
         });
 })();
 
-// Boton página editar perfil ----------------------------------------------------------------------------------------
-//
-//--------------------------------------------------------------------------------------------------------------------
-botonEditarPerfil.addEventListener("click", function() {
-    // El código que se ejecutará cuando se haga clic en el botón
-    window.location.href = 'editarPerfil.html';
+// Guardar los cambios del perfil---------------------------------------------------------------------------------------
+botonGuardarCambios.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario (envío)
+    popupGuardar.showModal();
+    popupGuardar.style.display="block";
 });
+function confirmarGuardar(){
+    const nombre = nombreUsuario.value;
+    const telefono = telefonoUsuario.value;
+    // Luego puedes realizar otras acciones, como enviar los datos al servidor
+    guardarDatosPerfil(nombre, emailUsuario, telefono);
+
+    popupGuardar.close();
+    popupGuardar.style.display="none";
+}
+function cerrarConfirmarGuardar(){
+    popupGuardar.close();
+    popupGuardar.style.display="none";
+}
+
+guardarCambios.addEventListener('click',confirmarGuardar);
+cancelarGuardar.addEventListener('click',cerrarConfirmarGuardar);
+
 //Boton Página cambiar Contraseña ------------------------------------------------------------------------------------
 //
 //--------------------------------------------------------------------------------------------------------------------
-cambiarContrasenya.addEventListener("click", function() {
+cambiarContrasenya.addEventListener("click", function(){
     // El código que se ejecutará cuando se haga clic en el botón
     window.location.href = 'restablecerContrasenya.html';
 });

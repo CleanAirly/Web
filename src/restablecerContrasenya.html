@@ -20,7 +20,7 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="index.html#contactanos">Contáctanos</a></li>
-                <li><a href="home.html" class="pagina-actual" id="sesion">Mis datos</a></li>
+                <li><a href="home.html" class="pagina-actual centrar" id="sesion">Mis datos</a></li>
             </ul>
             <div class="hamburguesa">
                 <div></div>
@@ -32,15 +32,16 @@
 
     <!------------------------------------------------ DATOS DEL USUARIO ------------------------------------------------>
 
-    <section>
+    <section class="centrar">
         <form class="alinear-izquierda" id="restablecer-contrasenya">
-            <h1>¿Quieres cambiar tu contraseña?</h1>
+            <h1>Cambiar tu contraseña</h1>
+            <h2>Introduce una nueva que cumpla con los requisitos.</h2>
 
-            <label for="contrasenyaAnterior"><h3>Antigua contraseña:</h3></label>
+            <label for="contrasenyaAnterior"><h3>Contraseña actual:</h3></label>
             <input type="password" name="contrasenyAnterios" id="contrasenyaAnterior" class="recuadros-inputs" required>
             <p id="texto-error" class="hidden estiloerror"> Tu contraseña es incorrecta</p>
 
-            <label for="nuevaContrasenya"><h3>Nueva contraseña:</h3></label>
+            <label for="nuevaContrasenya"><h3>Introduce la nueva contraseña:</h3></label>
             <input type="password" name="nuevaContrasenya" id="nuevaContrasenya" class="recuadros-inputs" required>
 
             <label id="error" class="hidden">Las contraseñas no coinciden</label>
@@ -71,6 +72,6 @@
 
     </section>
     <script src="menu2.js"></script>
-    <script type="module" src="restablecerContrasenya2.js"></script>
+    <script type="module" src="restablecerContrasenya3.js"></script>
 </body>
 </html>
