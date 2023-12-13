@@ -2,7 +2,11 @@
     --menu-height: 7rem;
 }
 .pagina-actual{
-    color: var(--botones);
+    width: 100px;
+    height: 25px;
+    border-radius: 30px;
+    background-color: var(--botones);
+    color: var(--fondo-pagina);
 }
 #logo{
     cursor: pointer;
