@@ -2,18 +2,13 @@ let valorCreciente =50;
 let start= 0;
 const progressBarFill = document.querySelector('.progress-bar-fill');
 const mostrarValor = document.getElementById("texto-informativo");
-setProgressBar(1)
-aumenta()
+setProgressBar(80);
+aumenta();
 function setProgressBar(progress){
     const totalLength = 596.9;
     const dashoffset = totalLength - (progress / 100) * totalLength;
-    if (progress <= 30) {
-        progressBarFill.setAttribute('stroke', 'var(--botones)');
-    } else if (progress > 30 && progress < 70) {
-        progressBarFill.setAttribute('stroke', '#d6c918');
-    } else {
-        progressBarFill.setAttribute('stroke', 'var(--txt-error)');
-    }
+    progressBarFill.setAttribute('stroke', '#4DCB39');
+
     progressBarFill.style.strokeDashoffset = dashoffset;
 }
 

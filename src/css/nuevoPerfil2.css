@@ -89,3 +89,34 @@ button{
     margin-top: 0.5rem;
 }
 
+.progress-bar-background {
+    fill: none;
+}
+
+.progress-bar-fill {
+
+    stroke-width: 20;
+    stroke-dasharray: 596.9;
+    stroke-dashoffset: 596.9;
+    animation: fill-progress 2s ease-in-out forwards;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+@keyframes fill-progress {
+    from {
+        stroke-dashoffset: 596.9;
+    }
+}
+
+#contenedor-porcentaje-bat{
+    position: relative;
+    margin-top: -8.5rem;
+    margin-bottom: 3rem;
+}
+h3{
+    font-size: 30px;
+}
+#alertas{
+    margin-top: 1rem;
+}

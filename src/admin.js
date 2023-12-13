@@ -9,33 +9,43 @@ const cancelarCerrarSesion = document.getElementById("cancelar-cerrar")
 
 // OPTION GROUP
 const optionGroup = document.getElementById("optgroup");
+let dataUsuariosFiltrada = [];
 
-optionGroup.addEventListener('change', function (){
+optionGroup.addEventListener('change', async function () {
     let opcionSeleccionada = this.options[this.selectedIndex].text;
-    if(opcionSeleccionada === "Nodos inactivos"){
-        filtro("inactivo")
-    } else if(opcionSeleccionada === "Sin filtro"){
-        filtro("")
+    resetNombresTabla(7);
+    switch (opcionSeleccionada) {
+        case opcionSeleccionada = "Sin filtro" :
+            optionGroupActivo = false;
+            await cambiarPagina("inicio")
+            break
+
+        case opcionSeleccionada = "Nodos activos" :
+            optionGroupActivo = true;
+            filtro("activo");
+            await cambiarPagina("inicio")
+            break
+
+        case opcionSeleccionada = "Nodos inactivos" :
+            optionGroupActivo = true;
+            filtro("inactivo");
+            await cambiarPagina("inicio")
+            break
+
+        case opcionSeleccionada = "Sin datos" :
+            optionGroupActivo = true;
+            filtro("sin datos");
+            await cambiarPagina("inicio")
+            break
     }
 });
 
 function filtro(input){
-    let usuariosCumplenBusqueda = [];
-
+    dataUsuariosFiltrada = [];
     for (let i = 0; i < dataUsuarios.length; i++) {
-        if (dataUsuarios[i].estadoSonda.toLowerCase().includes(input)) {
-            usuariosCumplenBusqueda.push(dataUsuarios[i]);
+        if (dataUsuarios[i].estadoSonda.toLowerCase() === input) {
+            dataUsuariosFiltrada.push(dataUsuarios[i]);
         }
-    }
-    ultimaPagina = Math.ceil(usuariosCumplenBusqueda.length / usuariosPorPagina);
-
-    mostrarOcultarIconos();
-
-    limpiarTabla();
-
-    let inicio = (pagina - 1) * usuariosPorPagina;
-    for(let i = inicio; i<inicio + usuariosPorPagina; i++){
-        if(usuariosCumplenBusqueda[i]) createUserRow(usuariosCumplenBusqueda[i].nombre, usuariosCumplenBusqueda[i].email, usuariosCumplenBusqueda[i].telefono, usuariosCumplenBusqueda[i].idSonda, usuariosCumplenBusqueda[i].estadoSonda);
     }
 }
 
@@ -90,6 +100,15 @@ function cerrarPopUP(){
 cancelarBorrar.addEventListener('click',cerrarPopUP);
 aceptarError.addEventListener('click',borrarUsuario);
 
+// ELEMENTOS PARA LA ORDENACION ----------------------------------------------------------------------------------------
+const ordenarNombre = document.getElementById("ordenarNombre");
+const ordenarEmail = document.getElementById("ordenarEmail");
+const ordenarTelefono = document.getElementById("ordenarTelefono");
+const ordenarSensor = document.getElementById("ordenarSensor");
+const ordenarEstado = document.getElementById("ordenarEstado");
+const ordenarTiempo = document.getElementById("ordenarTiempo");
+let optionGroupActivo = false;
+
 // DATOS DE LOS USUARIOS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 let dataUsuarios = [];
 
@@ -137,9 +156,218 @@ let usuariosPorPagina = 6;
 
         // CARGO LOS USUARIOS AL HTML
         cambiarPagina("inicio");
+
+        // AÑADO LAS FUNCIONES DE ORDENACIÓN DE LOS ELEMENTOS:
+        // NOMBRE
+        let casoNombre = false;
+        ordenarNombre.addEventListener( 'click', () => {
+            resetNombresTabla(1);
+            switch (casoNombre) {
+                case false :
+                    if(optionGroupActivo){
+                        dataUsuariosFiltrada.sort((a, b) => a.nombre.toLowerCase().localeCompare(b.nombre.toLowerCase(), 'es', {numeric: false}));
+                    } else {
+                        dataUsuarios.sort((a, b) => a.nombre.toLowerCase().localeCompare(b.nombre.toLowerCase(), 'es', {numeric: false}));
+                    }
+                    cambiarPagina("inicio");
+                    ordenarNombre.innerHTML = "Nombre ▼";
+                    casoNombre = true;
+                    break
+
+                case true :
+                    if(optionGroupActivo){
+                        dataUsuariosFiltrada.sort((a, b) => b.nombre.toLowerCase().localeCompare(a.nombre.toLowerCase(), 'es', {numeric: false}));
+                    } else {
+                        dataUsuarios.sort((a, b) => b.nombre.toLowerCase().localeCompare(a.nombre.toLowerCase(), 'es', {numeric: false}));
+                    }
+                    cambiarPagina("inicio");
+                    ordenarNombre.innerHTML = "Nombre ▲";
+                    casoNombre = false;
+                    break
+            }
+        });
+
+        // EMAIL
+        let casoEmail = false;
+        ordenarEmail.addEventListener( 'click', () => {
+            resetNombresTabla(2);
+            switch (casoEmail) {
+                case false :
+                    if(optionGroupActivo){
+                        dataUsuariosFiltrada.sort((a, b) => a.email.toLowerCase().localeCompare(b.email.toLowerCase(), 'es', {numeric: true}));
+                    } else {
+                        dataUsuarios.sort((a, b) => a.email.toLowerCase().localeCompare(b.email.toLowerCase(), 'es', {numeric: true}));
+                    }
+                    cambiarPagina("inicio");
+                    ordenarEmail.innerHTML = "Email ▼";
+                    casoEmail = true;
+                    break
+
+                case true :
+                    if(optionGroupActivo){
+                        dataUsuariosFiltrada.sort((a, b) => b.email.toLowerCase().localeCompare(a.email.toLowerCase(), 'es', {numeric: true}));
+                    } else {
+                        dataUsuarios.sort((a, b) => b.email.toLowerCase().localeCompare(a.email.toLowerCase(), 'es', {numeric: true}));
+                    }
+                    cambiarPagina("inicio");
+                    ordenarEmail.innerHTML = "Email ▲";
+                    casoEmail = false;
+                    break
+            }
+        })
+
+        // TELEFONO
+        let casoTelefono = false;
+        ordenarTelefono.addEventListener( 'click', () => {
+            resetNombresTabla(3);
+            switch (casoTelefono) {
+                case false :
+                    if(optionGroupActivo){
+                        dataUsuariosFiltrada.sort((a, b) => a.telefono.toLowerCase().localeCompare(b.telefono.toLowerCase(), 'es', {numeric: true}));
+                    } else {
+                        dataUsuarios.sort((a, b) => a.telefono.toLowerCase().localeCompare(b.telefono.toLowerCase(), 'es', {numeric: true}));
+                    }
+                    cambiarPagina("inicio");
+                    ordenarTelefono.innerHTML = "Teléfono ▲";
+                    casoTelefono = true;
+                    break
+
+                case true :
+                    if(optionGroupActivo){
+                        dataUsuariosFiltrada.sort((a, b) => b.telefono.toLowerCase().localeCompare(a.telefono.toLowerCase(), 'es', {numeric: true}));
+                    } else {
+                        dataUsuarios.sort((a, b) => b.telefono.toLowerCase().localeCompare(a.telefono.toLowerCase(), 'es', {numeric: true}));
+                    }
+                    cambiarPagina("inicio");
+                    ordenarTelefono.innerHTML = "Teléfono ▼";
+                    casoTelefono = false;
+                    break
+            }
+        })
+
+        // SENSOR
+        let casoSensor = false;
+        ordenarSensor.addEventListener( 'click', () => {
+            resetNombresTabla(4);
+            switch (casoSensor) {
+                case false :
+                    if(optionGroupActivo){
+                        dataUsuariosFiltrada.sort((a, b) => a.idSonda.toString().toLowerCase().localeCompare(b.idSonda.toString().toLowerCase(), 'es', {numeric: true}));
+                    } else {
+                        dataUsuarios.sort((a, b) => a.idSonda.toString().toLowerCase().localeCompare(b.idSonda.toString().toLowerCase(), 'es', {numeric: true}));
+                    }
+                    cambiarPagina("inicio");
+                    ordenarSensor.innerHTML = "Sensor ▲";
+                    casoSensor = true;
+                    break
+
+                case true :
+                    if(optionGroupActivo){
+                        dataUsuariosFiltrada.sort((a, b) => b.idSonda.toString().toLowerCase().localeCompare(a.idSonda.toString().toLowerCase(), 'es', {numeric: true}));
+                    } else {
+                        dataUsuarios.sort((a, b) => b.idSonda.toString().toLowerCase().localeCompare(a.idSonda.toString().toLowerCase(), 'es', {numeric: true}));
+                    }
+                    cambiarPagina("inicio");
+                    ordenarSensor.innerHTML = "Sensor ▼";
+                    casoSensor = false;
+                    break
+            }
+        })
+
+        // ESTADO SENSOR
+        let casoEstado = false;
+        ordenarEstado.addEventListener( 'click', () => {
+            if(!optionGroupActivo){
+                resetNombresTabla(5);
+                switch (casoEstado) {
+                    case false :
+                        dataUsuarios.sort((a, b) => a.estadoSonda.toLowerCase().localeCompare(b.estadoSonda.toLowerCase(), 'es', {numeric: true}));
+                        cambiarPagina("inicio");
+                        ordenarEstado.innerHTML = "Estado del sensor ▼";
+                        casoEstado = true;
+                        break
+
+                    case true :
+                        dataUsuarios.sort((a, b) => b.estadoSonda.toLowerCase().localeCompare(a.estadoSonda.toLowerCase(), 'es', {numeric: true}));
+                        cambiarPagina("inicio");
+                        ordenarEstado.innerHTML = "Estado del sensor ▲";
+                        casoEstado = false;
+                        break
+                }
+            }
+        })
+
         console.log(dataUsuarios);
     }
 })();
+
+function resetNombresTabla(caso){
+    switch (caso) {
+        // NOMBRE
+        case caso = 1 :
+            ordenarEmail.innerHTML = "Email"
+            ordenarTelefono.innerHTML = "Teléfono"
+            ordenarSensor.innerHTML = "Sensor"
+            ordenarEstado.innerHTML = "Estado del sensor"
+            ordenarTiempo.innerHTML = "Tiempo en el estado actual"
+            break
+
+        // EMAIL
+        case caso = 2 :
+            ordenarNombre.innerHTML = "Nombre"
+            ordenarTelefono.innerHTML = "Teléfono"
+            ordenarSensor.innerHTML = "Sensor"
+            ordenarEstado.innerHTML = "Estado del sensor"
+            ordenarTiempo.innerHTML = "Tiempo en el estado actual"
+            break
+
+        // TELEFONO
+        case caso = 3 :
+            ordenarNombre.innerHTML = "Nombre"
+            ordenarEmail.innerHTML = "Email"
+            ordenarSensor.innerHTML = "Sensor"
+            ordenarEstado.innerHTML = "Estado del sensor"
+            ordenarTiempo.innerHTML = "Tiempo en el estado actual"
+            break
+
+        // SENSOR
+        case caso = 4 :
+            ordenarNombre.innerHTML = "Nombre"
+            ordenarEmail.innerHTML = "Email"
+            ordenarTelefono.innerHTML = "Teléfono"
+            ordenarEstado.innerHTML = "Estado del sensor"
+            ordenarTiempo.innerHTML = "Tiempo en el estado actual"
+            break
+
+        // ESTADO DEL SENSOR
+        case caso = 5 :
+            ordenarNombre.innerHTML = "Nombre"
+            ordenarEmail.innerHTML = "Email"
+            ordenarTelefono.innerHTML = "Teléfono"
+            ordenarSensor.innerHTML = "Sensor"
+            ordenarTiempo.innerHTML = "Tiempo en el estado actual"
+            break
+
+        // TIEMPO EN EL ESTADO ACTUAL
+        case caso = 6 :
+            ordenarNombre.innerHTML = "Nombre"
+            ordenarEmail.innerHTML = "Email"
+            ordenarTelefono.innerHTML = "Teléfono"
+            ordenarSensor.innerHTML = "Sensor"
+            ordenarEstado.innerHTML = "Estado del sensor"
+            break
+
+        // TODOS
+        case caso = 7 :
+            ordenarNombre.innerHTML = "Nombre"
+            ordenarEmail.innerHTML = "Email"
+            ordenarTelefono.innerHTML = "Teléfono"
+            ordenarSensor.innerHTML = "Sensor"
+            ordenarEstado.innerHTML = "Estado del sensor"
+            ordenarTiempo.innerHTML = "Tiempo en el estado actual"
+            break
+    }
+}
 
 // FUNCIÓN PARA OBTENER EL ESTADO DEL SENSOR DEL USUARIO ---------------------------------------------------------------
 async function inactividadSensor(email){
@@ -278,29 +506,31 @@ function mostrarOcultarIconos(){
 }
 
 // FUNCIÓN PARA CAMBIAR ENTRE LAS PÁGINAS DE LA TABLA - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-function cambiarPagina(metodo){
-    ultimaPagina = Math.ceil(dataUsuarios.length / usuariosPorPagina);
+async function cambiarPagina(metodo) {
+    let datosUsuarios = [];
+    if (optionGroupActivo) {
+        ultimaPagina = Math.ceil(dataUsuariosFiltrada.length / usuariosPorPagina);
+        datosUsuarios = dataUsuariosFiltrada;
+    } else {
+        ultimaPagina = Math.ceil(dataUsuarios.length / usuariosPorPagina);
+        datosUsuarios = dataUsuarios;
+    }
 
-    if(metodo === "inicio"){
+    if (metodo === "inicio") {
         pagina = 1;
-    }
-    else if (metodo === "anterior" && pagina>1){
+    } else if (metodo === "anterior" && pagina > 1) {
         pagina--;
-    }
-    else if (metodo === "siguiente" && pagina<ultimaPagina){
+    } else if (metodo === "siguiente" && pagina < ultimaPagina) {
         pagina++;
-    }
-    else if(metodo === "actual"){
     }
 
     mostrarOcultarIconos();
-
     limpiarTabla()
 
     let inicio = (pagina - 1) * usuariosPorPagina;
-    for(let i = inicio; i<inicio + usuariosPorPagina; i++){
-        if(dataUsuarios[i]){
-            createUserRow(dataUsuarios[i].nombre, dataUsuarios[i].email, dataUsuarios[i].telefono, dataUsuarios[i].idSonda, dataUsuarios[i].estadoSonda);
+    for (let i = inicio; i < inicio + usuariosPorPagina; i++) {
+        if (datosUsuarios[i]) {
+            await createUserRow(datosUsuarios[i].nombre, datosUsuarios[i].email, datosUsuarios[i].telefono, datosUsuarios[i].idSonda, datosUsuarios[i].estadoSonda);
         }
     }
 }
