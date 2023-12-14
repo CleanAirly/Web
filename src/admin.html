@@ -29,10 +29,12 @@
         <h1>Administrar usuarios</h1>
         <div id="contenedor-filtros">
             <select class="contenedores-sombra" id="optgroup">
-                <optgroup label="Filtrar">
-                    <option disabled selected>Elige una opción</option>
-                    <option value="opcion1">Nodos inactivos</option>
-                    <option value="opcion2">Sin filtro</option>
+                <optgroup label="Filtrar sensor">
+                    <option value="opcion1">Sin filtro</option>
+                    <option value="opcion2">Nodos activos</option>
+                    <option value="opcion3">Nodos inactivos</option>
+                    <option value="opcion4">Sin datos</option>
+
                 </optgroup>
             </select>
             <div id="buscador" class="contenedores-sombra">
@@ -45,13 +47,12 @@
 
         <div class="contenedor-usuario bordegordo">
             <div class="contenedor-checkbox"></div>
-            <div class="contenedor-nombre"><h3>Nombre</h3></div>
-            <div class="contenedor-email"><h3>Email</h3></div>
-            <div class="contenedor-telefono"><h3>Teléfono</h3></div>
-            <div class="contenedor-sensor"><h3>Sensor</h3></div>
-            <div class="contenedor-estadosensor"><h3>Estado del sensor</h3></div>
-            <div class="contenedor-tiempo"><h4>Tiempo en el estado actual</h4></div>
-
+            <div class="contenedor-nombre"><h3 id="ordenarNombre">Nombre</h3></div>
+            <div class="contenedor-email"><h3 id="ordenarEmail">Email</h3></div>
+            <div class="contenedor-telefono"><h3 id="ordenarTelefono">Teléfono</h3></div>
+            <div class="contenedor-sensor"><h3 id="ordenarSensor">Sensor</h3></div>
+            <div class="contenedor-estadosensor"><h3 id="ordenarEstado">Estado del sensor</h3></div>
+            <div class="contenedor-tiempo"><h4 id="ordenarTiempo">Tiempo en el estado actual</h4></div>
         </div>
 
         <div id="contenedor-paginas">
@@ -79,7 +80,7 @@
     </dialog>
 </section>
 
-<script src="admin.js"></script>
+<script src="admin2.js"></script>
 <script src="menu2.js"></script>
 
 </body>

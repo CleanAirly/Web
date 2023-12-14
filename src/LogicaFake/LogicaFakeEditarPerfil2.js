@@ -7,7 +7,7 @@
 async function guardarDatosPerfil(nombre, email, telefono) {
     try {
         // Realizar una solicitud PUT al servidor local
-        const respuesta = await fetch('http://192.168.1.102:3001/api/sensor/usuarioUpdate', {
+        const respuesta = await fetch('http://192.168.1.47:3001/api/sensor/usuarioUpdate', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
@@ -22,7 +22,6 @@ async function guardarDatosPerfil(nombre, email, telefono) {
         // Obtener los datos en formato JSON
         const datos = await respuesta.json();
         console.log('Datos recibidos desde el servidor local:', datos);
-        window.location.href = 'perfil2.html';
     } catch (error) {
         console.error('Error:', error);
     }

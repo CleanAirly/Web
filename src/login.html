@@ -10,24 +10,25 @@
     <link rel="stylesheet" href="css/menu.css">
 </head>
 <body class="hidden">
+    <header>
+        <nav id="main-menu" class="activo" role="menubar">
+            <a href="index.html" ><img src="images/cleanAirlyLogo2.webp" id="logo" alt="logo"></a>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#contactanos">Contáctanos</a></li>
+                <li><a href="#" class="pagina-actual centrar" id="sesion">Iniciar Sesion</a></li>
+            </ul>
+
+            <div class="hamburguesa">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
     <section>
         <!------------------------------------------------ MENU ------------------------------------------------>
-        <header>
-            <nav id="main-menu" class="activo" role="menubar">
-                <a href="index.html" ><img src="images/cleanAirlyLogo2.webp" id="logo" alt="logo"></a>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="index.html#contactanos">Contáctanos</a></li>
-                    <li><a href="#" class="pagina-actual" id="sesion">Login</a></li>
-                </ul>
-                
-                <div class="hamburguesa">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </nav>
-        </header>
+
 
         <!------------------------------------------------ FOTO ------------------------------------------------>
 
@@ -35,14 +36,13 @@
         <div id="contenedor-contenedores-login" class="centrar">
 
             <!------------------------------------------------ LOGIN ------------------------------------------------>
-
-            <h1> Descubre el aire que respiras</h1>
             <div id="contenedor-formulario" class="centrar">
 
                 <form id="login-form">
-                        <h2>Inicia sesión</h2>
+                    <h1>Inicia sesión</h1>
+                    <h5>¿No tienes una cuenta? <a href="#" id="descargar-app">¡Descarga la App!</a></h5>
 
-                        <label for="usuario" class="subtitulo">Usuario:</label>
+                        <label for="usuario" class="subtitulo">Nombre usuario:</label>
                         <input type="text" name="usuario" id="usuario" class="recuadros-inputs" required>
                         <span id="email-error"></span>
 

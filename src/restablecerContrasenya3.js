@@ -13,8 +13,6 @@ const popupCancelar = document.getElementById("popup-cancelar-password");
 const aceptarSalir= document.getElementById("aceptar-salir");
 const cancelarSalir= document.getElementById("cancelar-salir");
 
-popupCancelar.style.display="none";
-
 //errores --------------------------------------------------------------------------------------------------------------
 const errorLabel = document.getElementById("error");
 const txtSeguridad = document.getElementById("txt-seguridad");
@@ -33,9 +31,10 @@ txtSeguridad.classList.add("hidden");
 
 // obtener los datos ---------------------------------------------------------------------------------------------------
 const emailUsuario = localStorage.getItem('usuarioLogeado');
+popupCancelar.style.display="none";
 
-import { comprobarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya2.js';
-import { cambiarContrasenya } from './LogicaFake/LogicaFakeCambiarContrasenya2.js';
+import { comprobarContrasenya } from './LogicaFake/LogicaFakeCambiarContraseny4.js';
+import { cambiarContrasenya } from './LogicaFake/LogicaFakeCambiarContraseny4.js';
 
 btonRecuperar.addEventListener('click',nuevaPassword);
 

@@ -1,22 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-
 #main-menu{
-    --bg-color: var(--fondo-pagina);
-    --txt2-color: var(--txt-color);
-    --hover-bg: var(--botones);
-    --hover-txt: var(--circulo);
     --menu-height: 7rem;
 }
 .pagina-actual{
-    height: 30px;
-    width:200px ;
+    width: 125px;
+    height: 25px;
     border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--botones);
     color: var(--fondo-pagina);
-    border: solid 2px var(--botones);
 }
 #logo{
     cursor: pointer;
@@ -28,7 +18,7 @@
 #main-menu ul{
     padding-top: 2rem;
     height: 200px;
-    background-color: var(--bg-color);
+    background-color: var(--fondo-pagina);
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -52,17 +42,13 @@
     justify-content: center;
     border-radius: 30px;
     margin-bottom: 1rem;
-    border: solid 2px var(--botones);
-    color: var(--botones);
-    text-align: center; 
 }
 #main-menu li:hover{
-    background-color: var(--botones);
-    color: var(--fondo-pagina);
+    color: var(--botones);
 }
 
 #main-menu{
-    background-color: var(--bg-color);
+    background-color: var(--fondo-pagina);
     color: var(--txt-color);
     height: var(--menu-height);
     display: flex;
@@ -71,7 +57,7 @@
     padding-right: .5em;
     width: 100%;
     position: fixed;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 10;
 }
 
@@ -85,18 +71,10 @@
 .hamburguesa div{
     background-color: var(--txt-color);
     width: 2em;
-    height: .2em;
+    height: .3em;
     margin: .3em auto;
     border-radius: 2px;
     transition: .5s;
-}
-.hamburguesa div:nth-child(2){
-    width: 1.25em;
-    margin-left: 0.75rem;
-}
-.hamburguesa div:nth-child(3){
-    width: 0.75em;
-    margin-left: 1.25rem;
 }
 
 #main-menu.activo .hamburguesa div:nth-child(2){
@@ -106,14 +84,12 @@
     transform: translateY(.6em) rotate(45deg);
 }
 #main-menu.activo .hamburguesa div:nth-child(3){
-    width: 2em;
-    margin-left: 0;
     transform: translateY(-.6em) rotate(-45deg);
 }
 @media screen and (min-width: 1000px) {
 
     #main-menu ul {
-        padding-top: 0rem;
+        padding-top: 0;
         background: transparent;
         top: 0;
         right: 0;
