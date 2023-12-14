@@ -7,7 +7,7 @@
 async function obtenerDatosUsuario(emailUsuario) {
     try {
         // Realizar una solicitud GET al servidor local
-        const respuesta = await fetch('http://192.168.1.102:3001/api/sensor/usuario', {
+        const respuesta = await fetch('http://192.168.75.1:3001/api/sensor/usuario', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
@@ -30,3 +30,23 @@ async function obtenerDatosUsuario(emailUsuario) {
     }
 }
 export {obtenerDatosUsuario};
+
+async function inactividadSensor(email){
+    try {
+        let respuesta = await fetch('http://192.168.75.1:3001/api/sensor/inactividadSensor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: email})
+        });
+        const datos = await respuesta.json();
+        console.log('Datos recibidos desde el servidor local:', datos);
+        return datos;
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+export {inactividadSensor};

@@ -3,7 +3,7 @@ section{
     height: 100vh;
     max-height: 100vh;
     background-image: url("../images/fondo_circulos.svg");
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
 }
 
@@ -119,4 +119,27 @@ h3{
 }
 #alertas{
     margin-top: 1rem;
+}
+@media screen and (max-width:750px){
+    #contenedor-global{
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       padding: 0 2rem;
+    }
+    form{
+        margin-top:20rem;
+        width: 100%;
+        border:none;
+        margin-bottom: 2rem;
+    }
+    #contenedor-bateria-sensor{
+        width: 100%;
+        height: auto;
+        margin-bottom: 2rem;
+
+    }
+    section{
+        max-height: 300vh;
+    }
 }

@@ -2,6 +2,7 @@
 const nombreUsuario = document.getElementById('nombre-usuario');
 const txtemailUsuario = document.getElementById("email-usuario");
 const telefonoUsuario = document.getElementById('telefono-usuario');
+const txtEstadoSensor = document.getElementById("estado-sensor");
 
 const idSensor = document.getElementById("problemas-sensor");
 
@@ -23,22 +24,26 @@ const guardarCambios= document.getElementById("guardar-cambios");
 const cancelarGuardar= document.getElementById("cancelar-guardar");
 
 import { obtenerDatosUsuario } from "./LogicaFake/LogicaFakePerfil.js";
+import { inactividadSensor } from "./LogicaFake/LogicaFakePerfil.js";
 import { guardarDatosPerfil } from './LogicaFake/LogicaFakeEditarPerfil2.js';
 
-(async () => {
-    popupCerrarSesion.style.display="none";
-    popupGuardar.style.display="none";
-    await obtenerDatosUsuario(emailUsuario)
-        .then(resultado => {
-            nombreUsuario.value = resultado.nombre;
-            txtemailUsuario.textContent = emailUsuario;
-            telefonoUsuario.value = resultado.telefono;
-            idSensor.textContent = "Id: # " + resultado.idSonda;
 
-        })
-        .catch((error) => {
-            console.error('Error en la promesa:', error);
-        });
+(async () => {
+    try {
+        popupCerrarSesion.style.display = "none";
+        popupGuardar.style.display = "none";
+
+        const resultado = await obtenerDatosUsuario(emailUsuario);
+        nombreUsuario.value = resultado.nombre;
+        txtemailUsuario.textContent = emailUsuario;
+        telefonoUsuario.value = resultado.telefono;
+        idSensor.textContent = "Id: # " + resultado.idSonda;
+
+        const datosInactividad = await inactividadSensor(emailUsuario);
+        txtEstadoSensor.textContent ="Estado: "+ datosInactividad;
+    } catch (error) {
+        console.error('Error:', error);
+    }
 })();
 
 // Guardar los cambios del perfil---------------------------------------------------------------------------------------
