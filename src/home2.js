@@ -2,8 +2,7 @@ const progressBarFill = document.querySelector('.progress-bar-fill');
 var mostrarValor = document.getElementById("texto-informativo");
 const displayBienvenida = document.getElementById('nombre-usuario');
 
-let valorCreciente =50;
-let start= 0;
+
 let listaInstantes = [];
 let listaValores = [];
 

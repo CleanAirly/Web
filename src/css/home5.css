@@ -59,10 +59,10 @@ h2{
 
 #texto-informativo {
     z-index: 9;
-    position: absolute;
+    position: relative;
     top: 37%;
     left: 36.5%;
-    transform: translate(-50%, -50%);
+    transform: translate(-80%, -650%);
 }
 
 h4{
