@@ -1,7 +1,7 @@
 const progressBarFill = document.querySelector('.progress-bar-fill');
-const mostrarValor = document.getElementById("texto-informativo");
+var mostrarValor = document.getElementById("texto-informativo");
 const displayBienvenida = document.getElementById('nombre-usuario');
-const displayPpm = document.getElementById('texto-informativo');
+
 let valorCreciente =50;
 let start= 0;
 let listaInstantes = [];
@@ -27,25 +27,39 @@ import { medidasGet } from './LogicaFake/LogicaFakeHome4.js';
 
         let ultimaMedida = await ultimaMedidaGet(emailUsuario);
         if(ultimaMedida !== null){
-            displayPpm.innerHTML = ultimaMedida.valor;
+            mostrarValor.textContent = ultimaMedida.valor + " ppm";
             setProgressBar( (ultimaMedida.valor / 1000) * 100);
-            aumenta();
+            
         } else {
-            displayPpm.innerHTML = "sin datos";
+            mostrarValor.textContent = "sin datos";
         }
 
-        let listaMedidas = await medidasGet(emailUsuario);
-        if(listaMedidas !== null){
-            listaMedidas.forEach( (medida) => {
+        let listaMedidasGraf = await medidasGet(emailUsuario);
+        if(listaMedidasGraf !== null){
+            listaMedidasGraf.forEach( (medida) => {
                 listaInstantes.push(medida.instante);
                 listaValores.push(medida.valor);
+            })
 
+            var listafechas = [];
+            //convertir lista de instantes a formato legible
+            listaInstantes.forEach( (instante) => {
+                let fecha = new Date(instante);
+                let dia = fecha.getDate();
+                let mes = fecha.getMonth();
+                let anio = fecha.getFullYear();
+                let hora = fecha.getHours();
+                let minutos = fecha.getMinutes();
+                let segundos = fecha.getSeconds();
+                let fechaLegible = hora+":"+minutos;
+                listafechas.push(fechaLegible);
+            })
                 // Selecciona el elemento canvas donde se renderizará el gráfico
                 const canvas = document.getElementById("miGrafico");
 
                 // Define los datos para el gráfico
                 const data = {
-                    labels: listaInstantes,
+                    labels: listafechas,
                     datasets: [{
                         label: "",
                         data: listaValores, // Datos de ventas para cada mes
@@ -83,8 +97,61 @@ import { medidasGet } from './LogicaFake/LogicaFakeHome4.js';
                 // Ocultar la leyenda después de que se haya creado el gráfico
                 miGrafico.options.plugins.legend.display = false;
                 miGrafico.update();
-            })
-        }
+           
+
+           
+            
+                var mapContainer = document.getElementById('map-container');
+                var map = L.map(mapContainer).setView([38.968, -0.185], 13);
+
+                
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+
+// Crear un array con objetos {lat, lng, value} para Leaflet.heat, usando los valores individuales
+let listaMedidas = await medidasGet("prueba@gmail.com");
+var heatData = listaMedidas.map(medida => ({
+    lat: parseFloat(medida.lugar.split(",")[0]),
+    lng: parseFloat(medida.lugar.split(",")[1]),
+    value: medida.valor  // Usar directamente el valor individual
+}));
+
+// Crear una capa de calor y añadirla al mapa
+var heat = L.heatLayer(heatData, {
+    radius: 25, // Radio de dispersión
+    blur: 15, // Difuminado
+    gradient: { 0.4: 'blue', 0.65: 'lime', 1: 'red' }, // Gradiente de colores
+    maxZoom: 17, // Zoom máximo para mostrar el mapa de calor
+    minOpacity: 0.5 // Opacidad mínima
+}).addTo(map);
+                    
+/*
+                        listaMedidas.forEach( (medida) => {
+                           let valor = medida.valor;
+                           let lugar = medida.lugar;
+                            let arrayCoordenadas = lugar.split(","); // Dividir el string en un array usando la coma como separador
+                            let latitud = arrayCoordenadas[0]; // La latitud estará en la primera posición del array
+                            let longitud = arrayCoordenadas[1]; // La longitud estará en la segunda posición del array
+
+                            var circle = L.circle([latitud,longitud], {
+                                color: 'blue',
+                                fillColor: 'blue',
+                                fillOpacity: 0.5,
+                                radius: 50 // Radio en metros
+                            }).addTo(map);
+
+                            circle.bindPopup("Contaminación:"+ valor +"ppm de ozono").openPopup(); // Popup con información de contaminación
+                           
+                        });
+                           
+                           
+                    */
+                                        
+                                
+                                
+            }
 
         /*medidasGet(emailUsuario)
             .then((resultado) => {
@@ -118,26 +185,4 @@ function setProgressBar(progress) {
     progressBarFill.style.strokeDashoffset = dashoffset;
 }
 
- function aumenta(){
-     // Usamos un intervalo para realizar el aumento de manera gradual
-     let progress=setInterval(()=>{
-         if(start<valorCreciente){
-             //para que se vea como aumenta poco a poco 
-             start = start + 2;
-             ProgressEND();
-         }else if(start>valorCreciente){
-             //para que se vea como decrece
-             start--;
-             ProgressEND();
-         }
-         function ProgressEND(){
-             //hago que mi texto aumente poco a poco
-             mostrarValor.textContent =`${start}ppm`
-             //para que cuando llegue al valor no siga aumentando
-             if(start === valorCreciente){
-                 clearInterval(progress);
-                 valorCreciente = "";
-             }
-         }
-     },1)//quiero que lo haga en 15 segundos (mientras mas grande el valor en menos tiempo hay que hacerlo)
- }
+ 

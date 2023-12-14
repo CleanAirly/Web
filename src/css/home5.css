@@ -59,9 +59,9 @@ h2{
 
 #texto-informativo {
     z-index: 9;
-    position: absolute;
-    top: 37%;
-    left: 36.5%;
+    position: relative;
+    top: -42%;
+    left: 21%;
     transform: translate(-50%, -50%);
 }
 
@@ -95,6 +95,20 @@ h4{
     height: 25px;
     margin-right: 0.5rem;
     background-color: var(--circulo);
+    border-radius: 5px;
+}
+#indicador2{
+    width: 50px;
+    height: 25px;
+    margin-right: 0.5rem;
+    background-color: lime;
+    border-radius: 5px;
+}
+#indicador3{
+    width: 50px;
+    height: 25px;
+    margin-right: 0.5rem;
+    background-color: red;
     border-radius: 5px;
 }
 p{
@@ -132,6 +146,17 @@ p{
     display: none;
 }
 
+#ver-mas{
+    margin-top: 1rem;
+    height: 30px;
+    width: 100%;
+    background-color: var(--botones);
+    color: var(--fondo-pagina);
+    border-radius: 30px;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.15);
+    font-family: 'Roboto';
+}
+/*
 @media screen and (max-width:1400px){
     #texto-informativo{
         left: 33%;
@@ -156,14 +181,17 @@ p{
     }
 
 }
+*/
 @media screen and (max-width:850px){
     h1{
         margin-top:10rem;
     }
+    /*
     #texto-informativo{
         top: 41%;
         left: 50%;
     }
+    */
     #contenedor-todo{
         flex-direction: column;
     }
