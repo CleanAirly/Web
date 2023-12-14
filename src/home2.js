@@ -109,6 +109,10 @@ import { medidasGet } from './LogicaFake/LogicaFakeHome4.js';
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
 
+
+
+
+
 // Crear un array con objetos {lat, lng, value} para Leaflet.heat, usando los valores individuales
 let listaMedidas = await medidasGet("prueba@gmail.com");
 var heatData = listaMedidas.map(medida => ({
@@ -116,16 +120,46 @@ var heatData = listaMedidas.map(medida => ({
     lng: parseFloat(medida.lugar.split(",")[1]),
     value: medida.valor  // Usar directamente el valor individual
 }));
+let seleccion;
+let heat = null; // Inicializa la variable de la capa de calor como null
 
-// Crear una capa de calor y añadirla al mapa
-var heat = L.heatLayer(heatData, {
-    radius: 25, // Radio de dispersión
-    blur: 15, // Difuminado
-    gradient: { 0.4: 'blue', 0.65: 'lime', 1: 'red' }, // Gradiente de colores
-    maxZoom: 17, // Zoom máximo para mostrar el mapa de calor
-    minOpacity: 0.5 // Opacidad mínima
-}).addTo(map);
-                    
+document.getElementById("selectorContaminantes").addEventListener("change", function() {
+    seleccion = this.value;
+    console.log("La selección: " + seleccion);
+
+    if (seleccion === "ozono") {
+        // Si se selecciona "ozono", mostrar el mapa de calor
+        if (!heat) {
+            heat = L.heatLayer(heatData, {
+                radius: 25,
+                blur: 15,
+                gradient: { 0.4: 'blue', 0.65: 'lime', 1: 'red' },
+                maxZoom: 17,
+                minOpacity: 0.5
+            }).addTo(map);
+        }
+    } else {
+        // Si se selecciona cualquier otro contaminante y la capa de calor existe, eliminarla del mapa
+        if (heat) {
+            map.removeLayer(heat);
+            heat = null; // Establece la variable de la capa de calor como null después de eliminarla
+        }
+        // Aquí podrías manejar otras acciones cuando no hay medidas disponibles para otro contaminante
+    }
+});
+
+// Al iniciar, si por defecto está seleccionado "ozono", muestra la capa de calor
+seleccion = document.getElementById("selectorContaminantes").value;
+if (seleccion === "ozono") {
+    heat = L.heatLayer(heatData, {
+        radius: 25,
+        blur: 15,
+        gradient: { 0.4: 'blue', 0.65: 'lime', 1: 'red' },
+        maxZoom: 17,
+        minOpacity: 0.5
+    }).addTo(map);
+}
+       
 /*
                         listaMedidas.forEach( (medida) => {
                            let valor = medida.valor;
