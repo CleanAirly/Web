@@ -57,18 +57,45 @@
 
             <div id="contenedor-todo">
                 <!------------------------------------------------ DATOS PPM ------------------------------------------------>
-
-                <div class="contenedor entero centrar contenedores-sombra">
-                    <h2>¿Cómo has respirado hoy?</h2>
-
-                    <div id="contenedor-progress-bar" class="centrar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
-                            <circle class="progress-bar-background" cx="110" cy="110" r="95" stroke="#E5E5E5" stroke-width="20" />
-                            <circle class="progress-bar-fill" cx="110" cy="110" r="95" stroke-linecap="round" stroke-width="20" />
-                        </svg>
-                            <h3 id="texto-informativo">200 ppm</h3>
+                <div>
+                    <div class="contenedor entero centrar contenedores-sombra">
+                        <h2>¿Cómo has respirado hoy?</h2>
+    
+                        <div id="contenedor-progress-bar" class="centrar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
+                                <circle class="progress-bar-background" cx="110" cy="110" r="95" stroke="#E5E5E5" stroke-width="20" />
+                                <circle class="progress-bar-fill" cx="110" cy="110" r="95" stroke-linecap="round" stroke-width="20" />
+                            </svg>
+                                <h3 id="texto-informativo">200 ppm</h3> <!-- arreglar -->
+                        </div>
+                        <h4 id="nivel-respirado">Bastante bien</h4>
+    
+                        <div id="raya"></div>
+    
+                        <h3>Datos a lo largo del día</h3>
+    
+                        <canvas id="miGrafico"></canvas>
+    
+                        <div class="contenedor-leyenda">
+                            <div id="indicador"></div>
+                            <p>Nivel de Ozono en el aire</p>
+                        </div>
                     </div>
-                    <h4 id="nivel-respirado">Bastante bien</h4>
+<<<<<<< HEAD
+                    <button id="ver-mas" class="crecer boton boton-azul">Ver más datos</button>
+                </div>
+                <!------------------------------------------------ MAPA ------------------------------------------------>
+                <div class="contenedor entero contenedores-sombra">
+                    <h2>¿Donde puedo respirar un mejor aire?</h2>
+                    <div id="map-container">
+                        <div id="map"></div>
+                    </div>
+                    <h5>Leyenda</h5>
+=======
+                    <div id="contenedor-calidad">
+                        <h4 id="nivel-respirado">Bastante bien</h4>
+                        <a href="gases.html"><img src="images/icono_informacion.svg"></a>
+                    </div>
 
                     <div id="raya"></div>
 
@@ -76,16 +103,37 @@
 
                     <canvas id="miGrafico"></canvas>
 
+>>>>>>> 5786df0281c9143345d12bcde4596fab96667b1d
                     <div class="contenedor-leyenda">
                         <div id="indicador"></div>
-                        <p>Nivel de Ozono en el aire</p>
+                        <p>Nivel de Ozono en el aire < 200 ppm </p>
                     </div>
+                    <div class="contenedor-leyenda">
+                        <div id="indicador2"></div>
+                        <p>Nivel de Ozono en el aire > 200 ppm y < 500 ppm</p>
+                    </div>
+                    <div class="contenedor-leyenda">
+                        <div id="indicador3"></div>
+                        <p>Nivel de Ozono en el aire > 500 ppm </p>
+                    </div>
+
                 </div>
+                
+                    <script>
+                    
+                   
+                    
 
-                <!------------------------------------------------ DATOS PPM ------------------------------------------------>
 
-                <div class="contenedor entero centrar contenedores-sombra">
-                    <h2>Información adicional</h2>
+
+
+                        
+                    
+                    
+                  
+
+                    </script>
+                    <!--
                     <div id="tabla" class="centrar">
                         <div class="fila">
                             <div class="columna-izquierda centrar">ppb</div>
