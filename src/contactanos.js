@@ -8,10 +8,12 @@ btnEnviar.addEventListener('click', async (event) => {
     const correoUsuario = document.getElementById("correo-usuario").value;
     const telefonoUsuario = document.getElementById("telefono-usuario").value;
 
-    if (ckbox.checked) {
+    if (ckbox.checked && nombreUsuario !== "" && correoUsuario !== "" && telefonoUsuario !== "") {
         await enviarCorreo(nombreUsuario, correoUsuario, telefonoUsuario);
-    } else {
+    } else if (!ckbox.checked){
         alert("Debes aceptar los términos y condiciones de privacidad.");
+    } else if(nombreUsuario === "" || correoUsuario === "" || telefonoUsuario === "") {
+        alert("Debes rellenar todos los campos.");
     }
 });
 

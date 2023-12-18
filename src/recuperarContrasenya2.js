@@ -36,7 +36,7 @@ console.log('Email recibido:', emailRecibido);
 // obtener los datos ---------------------------------------------------------------------------------------------------
 const emailUsuario = emailRecibido;
 
-import {cambiarContrasenya, comprobarContrasenya} from './LogicaFake/LogicaFakeCambiarContraseny4.js';
+import {cambiarContrasenya, comprobarContrasenya} from './LogicaFake/LogicaFakeCambiarContraseny5.js';
 
 
 btonRecuperar.addEventListener('click',nuevaPassword);

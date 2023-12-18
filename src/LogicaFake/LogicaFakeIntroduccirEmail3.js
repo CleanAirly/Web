@@ -7,7 +7,7 @@
 async function emailUsuarioGet() {
     // Buscar nombre por correo
     try {
-        const respuesta = await fetch('http://192.168.75.1:3001/api/sensor/emailNoAdmins', {
+        const respuesta = await fetch('http://172.20.10.2:3001/api/sensor/emailNoAdmins', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario

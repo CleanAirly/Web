@@ -33,8 +33,8 @@ txtSeguridad.classList.add("hidden");
 const emailUsuario = localStorage.getItem('usuarioLogeado');
 popupCancelar.style.display="none";
 
-import { comprobarContrasenya } from './LogicaFake/LogicaFakeCambiarContraseny4.js';
-import { cambiarContrasenya } from './LogicaFake/LogicaFakeCambiarContraseny4.js';
+import { comprobarContrasenya } from './LogicaFake/LogicaFakeCambiarContraseny5.js';
+import { cambiarContrasenya } from './LogicaFake/LogicaFakeCambiarContraseny5.js';
 
 btonRecuperar.addEventListener('click',nuevaPassword);
 
@@ -142,7 +142,7 @@ function confirmarSalir(){
     popupCancelar.close();
     popupCancelar.style.display="none";
 
-    window.location.href = 'perfil2.html';
+    window.location.href = 'nuevoPerfil.html';
 }
 function noSalir(){
     popupCancelar.close();
@@ -151,7 +151,3 @@ function noSalir(){
 
 aceptarSalir.addEventListener('click',confirmarSalir);
 cancelarSalir.addEventListener('click',noSalir);
-
-
-
-

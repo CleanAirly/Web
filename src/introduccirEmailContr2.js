@@ -23,7 +23,11 @@ async function estaNoEsta() {
         if(datosObtenidos[i].email=== emails){
             popupEmail.showModal();
             popupEmail.style.display="block";
+        }else {
+            alert("Este correo no existe")
+            return
         }
+
     }
 }
 

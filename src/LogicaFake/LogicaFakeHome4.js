@@ -7,7 +7,7 @@
 async function nombreUsuarioGet(emailUsuario) {
     // Buscar nombre por correo
     try {
-        const respuesta = await fetch('http://192.168.75.1:3001/api/sensor/usuario', {
+        const respuesta = await fetch('http://172.20.10.2:3001/api/sensor/usuario', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
@@ -35,7 +35,7 @@ export {nombreUsuarioGet};
     // Buscar ultima medida por el correo
     try {
         // Realizar una solicitud GET al servidor local
-        const respuesta = await fetch('http://192.168.75.1:3001/api/sensor/medida', {
+        const respuesta = await fetch('http://172.20.10.2:3001/api/sensor/medida', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
@@ -65,7 +65,7 @@ export {ultimaMedidaGet};
     // Buscar todas las medidas por el correo
     try {
         // Realizar una solicitud GET al servidor local
-        const respuesta = await fetch('http://192.168.75.1:3001/api/sensor', {
+        const respuesta = await fetch('http://172.20.10.2:3001/api/sensor', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario

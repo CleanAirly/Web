@@ -3,6 +3,7 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
 }
 
 #seccion-form {
@@ -11,6 +12,7 @@ section{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    border-radius:30px;
 }
 
 #contenedor-form {
@@ -25,7 +27,7 @@ section{
     width: 45%;
     height: 30vh;
     position: relative;
-    border-radius: 4px;
+    border-radius: 30px;
 }
 
 #contenedor-izquierda h3 {
@@ -64,10 +66,14 @@ section{
     height: 45vh;
     box-shadow: 1px 1px 15px 5px rgba(0, 0, 0, 0.10);
     display: flex;
+    background-color: var(--fondo-pagina);
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    border-radius: 4px;
+    border-radius: 30px;
+}
+#contenedor-derecha p{
+    margin-bottom: 0.5rem;
 }
 
 form {
@@ -86,7 +92,8 @@ label {
 input {
     width: 99%;
     border: none;
-    height: 40px;
+    height: 30px;
+    font-size:18px;
     padding-left: 6px;
     background: var(--campos-fondo);
 }
@@ -122,7 +129,7 @@ input {
     color: var(--campos-fondo);
     background: var(--botones);
     padding: 7px 35px 7px 35px;
-    border-radius: 3px;
+    border-radius: 30px;
 }
 
 /* ---------------------------------------------- */
@@ -130,6 +137,9 @@ input {
 /* ---------------------------------------------- */
 
 @media screen and (max-width: 1200px) {
+    h2{
+        margin-top:7rem;
+    }
     #contenedor-form {
         display: grid;
         grid-template-areas: "derecha" "izquierda";

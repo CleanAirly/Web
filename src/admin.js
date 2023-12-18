@@ -1,5 +1,5 @@
 // RUTA DEL SERVIDOR ---------------------------------------------------------------------------------------------------
-let RUTA = 'http://192.168.1.102:3001/api/sensor';
+let RUTA = 'http://172.20.10.2:3001/api/sensor';
 
 // CERRAR SESION - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 const botonCerrarSesion = document.getElementById("cerrar-sesion");

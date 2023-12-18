@@ -28,7 +28,22 @@ import { medidasGet } from './LogicaFake/LogicaFakeHome4.js';
         if(ultimaMedida !== null){
             mostrarValor.textContent = ultimaMedida.valor + " ppm";
             setProgressBar( (ultimaMedida.valor / 1000) * 100);
-            
+            var nivelRespirado = document.getElementById("nivel-respirado");
+            if(ultimaMedida.valor<=50){
+                nivelRespirado.innerHTML = "Muy bueno"
+            }
+            if(ultimaMedida.valor>50 && ultimaMedida.valor<=100){
+                nivelRespirado.innerHTML = "Bueno"
+            }
+            if(ultimaMedida.valor>100 && ultimaMedida.valor<=150){
+                nivelRespirado.innerHTML = "Aceptable"
+            }
+            if(ultimaMedida.valor>150 && ultimaMedida.valor<=200){
+                nivelRespirado.innerHTML = "Malo"
+            }
+            if(ultimaMedida.valor>200){
+                nivelRespirado.innerHTML = "Peligroso"
+            }
         } else {
             mostrarValor.textContent = "sin datos";
         }
@@ -96,30 +111,57 @@ import { medidasGet } from './LogicaFake/LogicaFakeHome4.js';
                 // Ocultar la leyenda después de que se haya creado el gráfico
                 miGrafico.options.plugins.legend.display = false;
                 miGrafico.update();
-           
 
-           
-            
                 var mapContainer = document.getElementById('map-container');
                 var map = L.map(mapContainer).setView([38.968, -0.185], 13);
-
                 
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
 
+// Crear un marcador en las coordenadas específicas
+let marker = L.marker([38.9679774, -0.1910988]).addTo(map);
+
+// Establecer el texto del marcador como "Estacion Oficial Gandia"
+marker.bindPopup("Estacion Oficial").openPopup();
 
 
+                let listaMedidas = [];
+                let medidaOficial = {lugar: "38.9679774,-0.1910988", valor: 63}
+                listaMedidas.push(medidaOficial);
+                try {
+                    let emailUsuarios = await emailNoAdmins();
+                
+                    for (const email of emailUsuarios) {
+                        const resultado = await medidasGet(email.email);
+                        
+                        resultado.forEach(function (elemento) {
+                            listaMedidas.push(elemento);
+                        });
+                    }
+                
+                    
+                } catch (error) {
+                    console.error('Error en la ejecución:', error);
+                }
+                
+                console.log(listaMedidas);
 
 
-// Crear un array con objetos {lat, lng, value} para Leaflet.heat, usando los valores individuales
-let listaMedidas = await medidasGet("prueba@gmail.com");
-var heatData = listaMedidas.map(medida => ({
-    lat: parseFloat(medida.lugar.split(",")[0]),
-    lng: parseFloat(medida.lugar.split(",")[1]),
-    value: medida.valor  // Usar directamente el valor individual
-}));
+                var heatData = listaMedidas.map(medida => {
+                    const lugarValues = medida.lugar.split(",");
+                    if (lugarValues.length === 2 && !isNaN(parseFloat(lugarValues[0])) && !isNaN(parseFloat(lugarValues[1]))) {
+                        return {
+                            lat: parseFloat(lugarValues[0]),
+                            lng: parseFloat(lugarValues[1]),
+                            value: medida.valor
+                        };
+                    }
+                    // If the lugar doesn't have both lat and lng or they are not valid numbers, return null or an empty object
+                    // You might handle this case based on your requirements.
+                    return null; // or return {} or any default value you prefer
+                }).filter(Boolean);
 let seleccion;
 let heat = null; // Inicializa la variable de la capa de calor como null
 
@@ -159,49 +201,7 @@ if (seleccion === "ozono") {
         minOpacity: 0.5
     }).addTo(map);
 }
-       
-/*
-                        listaMedidas.forEach( (medida) => {
-                           let valor = medida.valor;
-                           let lugar = medida.lugar;
-                            let arrayCoordenadas = lugar.split(","); // Dividir el string en un array usando la coma como separador
-                            let latitud = arrayCoordenadas[0]; // La latitud estará en la primera posición del array
-                            let longitud = arrayCoordenadas[1]; // La longitud estará en la segunda posición del array
-
-                            var circle = L.circle([latitud,longitud], {
-                                color: 'blue',
-                                fillColor: 'blue',
-                                fillOpacity: 0.5,
-                                radius: 50 // Radio en metros
-                            }).addTo(map);
-
-                            circle.bindPopup("Contaminación:"+ valor +"ppm de ozono").openPopup(); // Popup con información de contaminación
-                           
-                        });
-                           
-                           
-                    */
-                                        
-                                
-                                
-            }
-
-        /*medidasGet(emailUsuario)
-            .then((resultado) => {
-                console.log(resultado);
-                resultado.forEach(function(elemento) {
-                    listaInstantes.push(elemento.instante);
-                    listaValores.push(elemento.valor);
-                });
-
-
-
-
-
-            })
-            .catch((error) => {
-                console.error('Error en la promesa:', error);
-            });*/
+        }
     }
 })();
 
@@ -218,4 +218,20 @@ function setProgressBar(progress) {
     progressBarFill.style.strokeDashoffset = dashoffset;
 }
 
- 
+let RUTA = 'http://172.20.10.2:3001/api/sensor';
+
+ // FUNCIÓN PARA OBTENER TODOS LOS EMAILS DE USUARIOS QUE NO SEA ADMINISTRADORES ----------------------------------------
+ async function emailNoAdmins(){
+    try{
+        let respuesta = await fetch(RUTA+'/emailNoAdmins', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        });
+        return await respuesta.json()
+    } catch (e) {
+        console.log("Error: "+e);
+    }
+}
