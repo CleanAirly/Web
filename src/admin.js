@@ -1,5 +1,5 @@
 // RUTA DEL SERVIDOR ---------------------------------------------------------------------------------------------------
-let RUTA = 'http://192.168.43.64:3001/api/sensor';
+let RUTA = 'http://192.168.0.25:3001/api/sensor';
 
 // CERRAR SESION - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 const botonCerrarSesion = document.getElementById("cerrar-sesion");
@@ -154,8 +154,13 @@ let usuariosPorPagina = 6;
             dataUsuarios[i].estadoSonda = await inactividadSensor(dataUsuarios[i].email);
         }
 
+        // POR CADA USUARIO OBTENGO EL TIEMPO EN EL QUE SU SENSOR SE ENCUENTRA EN EL ESTADO ACTUAL
+        for(let i = 0; i<dataUsuarios.length; i++){
+            dataUsuarios[i].tiempoEstadoActual = await tiempoEnElEstadoActual(dataUsuarios[i].email);
+        }
+
         // CARGO LOS USUARIOS AL HTML
-        cambiarPagina("inicio");
+        await cambiarPagina("inicio");
 
         // AÑADO LAS FUNCIONES DE ORDENACIÓN DE LOS ELEMENTOS:
         // NOMBRE
@@ -297,6 +302,29 @@ let usuariosPorPagina = 6;
             }
         })
 
+        // ACTIVIDAD SENSOR
+        let casoActividad = false;
+        ordenarTiempo.addEventListener( 'click', () => {
+            if(!optionGroupActivo){
+                resetNombresTabla(6);
+                switch (casoActividad) {
+                    case false :
+                        dataUsuarios.sort((a, b) => a.tiempoEstadoActual.toLowerCase().localeCompare(b.tiempoEstadoActual.toLowerCase(), 'es', {numeric: true}));
+                        cambiarPagina("inicio");
+                        ordenarTiempo.innerHTML = "Tiempo en el estado actual ▲";
+                        casoActividad = true;
+                        break
+
+                    case true :
+                        dataUsuarios.sort((a, b) => b.tiempoEstadoActual.toLowerCase().localeCompare(a.tiempoEstadoActual.toLowerCase(), 'es', {numeric: true}));
+                        cambiarPagina("inicio");
+                        ordenarTiempo.innerHTML = "Tiempo en el estado actual ▼";
+                        casoActividad = false;
+                        break
+                }
+            }
+        })
+
         console.log(dataUsuarios);
     }
 })();
@@ -418,7 +446,7 @@ async function nombreUsuarioGet(email){
 }
 
 // FUNCIÓN PARA CREAR LOS ELEMENTOS HTML QUE MUESTRAN LA INFORMACIÓN DEL USUARIO - - - - - - - - - - - - - - - - - - - -
-async function createUserRow(nombre, email, telefono, idSensor, estadoSensor){
+async function createUserRow(nombre, email, telefono, idSensor, estadoSensor, tiempoEstadoActual){
     // OBTENGO DONDE SE INSERTARÁ EL USUARIO
     const insertarAqui = document.getElementById("contenedor-tabla");
     const aPartirDeAqui = document.getElementById("contenedor-paginas");
@@ -464,7 +492,7 @@ async function createUserRow(nombre, email, telefono, idSensor, estadoSensor){
 
     const contenedorTiempo = document.createElement("div");
     contenedorTiempo.classList.add("contenedor-tiempo")
-    contenedorTiempo.innerHTML = await tiempoEnElEstadoActual(email)
+    contenedorTiempo.innerHTML = await cambiarDiasHorasMinutos(tiempoEstadoActual);
 
     // JUNTO LOS ELEMENTOS SEGÚN EL ORDEN ESTABLECIDO
     //contenedorCheckbox.appendChild(borrar);
@@ -530,7 +558,7 @@ async function cambiarPagina(metodo) {
     let inicio = (pagina - 1) * usuariosPorPagina;
     for (let i = inicio; i < inicio + usuariosPorPagina; i++) {
         if (datosUsuarios[i]) {
-            await createUserRow(datosUsuarios[i].nombre, datosUsuarios[i].email, datosUsuarios[i].telefono, datosUsuarios[i].idSonda, datosUsuarios[i].estadoSonda);
+            await createUserRow(datosUsuarios[i].nombre, datosUsuarios[i].email, datosUsuarios[i].telefono, datosUsuarios[i].idSonda, datosUsuarios[i].estadoSonda, datosUsuarios[i].tiempoEstadoActual);
         }
     }
 }
@@ -554,7 +582,7 @@ function buscarUsuario(){
 
     let inicio = (pagina - 1) * usuariosPorPagina;
     for(let i = inicio; i<inicio + usuariosPorPagina; i++){
-        if(usuariosCumplenBusqueda[i]) createUserRow(usuariosCumplenBusqueda[i].nombre, usuariosCumplenBusqueda[i].email, usuariosCumplenBusqueda[i].telefono, usuariosCumplenBusqueda[i].idSonda, usuariosCumplenBusqueda[i].estadoSonda,);
+        if(usuariosCumplenBusqueda[i]) createUserRow(usuariosCumplenBusqueda[i].nombre, usuariosCumplenBusqueda[i].email, usuariosCumplenBusqueda[i].telefono, usuariosCumplenBusqueda[i].idSonda, usuariosCumplenBusqueda[i].estadoSonda, usuariosCumplenBusqueda[i].tiempoEstadoActual);
     }
 }
 
@@ -601,11 +629,17 @@ async function tiempoEnElEstadoActual(email){
         const fechaUltimaMedida = new Date(ultimaMedida.instante);
         const diferenciaTiempo = fechaActual - fechaUltimaMedida;
 
-        // Calcular los días, horas y minutos
-        const dias = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
-        const horas = Math.floor((diferenciaTiempo % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutos = Math.floor((diferenciaTiempo % (1000 * 60 * 60)) / (1000 * 60));
+        return diferenciaTiempo.toString();
+    } else {
+        return "sin datos"
+    }
+}
 
+async function cambiarDiasHorasMinutos(tiempo){
+    if(tiempo !== "sin datos"){
+        const dias = Math.floor(tiempo / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((tiempo % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((tiempo % (1000 * 60 * 60)) / (1000 * 60));
         return `${dias} días, ${horas} horas, ${minutos} minutos`;
     } else {
         return "sin datos"

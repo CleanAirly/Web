@@ -2,6 +2,7 @@ const progressBarFill = document.querySelector('.progress-bar-fill');
 var mostrarValor = document.getElementById("texto-informativo");
 const displayBienvenida = document.getElementById('nombre-usuario');
 
+let RUTA = 'http://192.168.0.25:3001/api/sensor';
 
 let listaInstantes = [];
 let listaValores = [];
@@ -10,7 +11,6 @@ import { nombreUsuarioGet } from './LogicaFake/LogicaFakeHome4.js';
 import { ultimaMedidaGet } from './LogicaFake/LogicaFakeHome4.js';
 import { medidasGet } from './LogicaFake/LogicaFakeHome4.js';
 import { ultimasMedidasOzonoConMedia } from './LogicaFake/LogicaFakeHome4.js';
-
 
 (async () => {
     if(localStorage.getItem('usuarioRole') !== "usuario"){
@@ -221,8 +221,6 @@ function setProgressBar(progress) {
     }
     progressBarFill.style.strokeDashoffset = dashoffset;
 }
-
-let RUTA = 'http://192.168.43.64:3001/api/sensor';
 
  // FUNCIÓN PARA OBTENER TODOS LOS EMAILS DE USUARIOS QUE NO SEA ADMINISTRADORES ----------------------------------------
  async function emailNoAdmins(){

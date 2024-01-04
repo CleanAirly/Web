@@ -85,7 +85,7 @@ async function iniciarSesion() {
         const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         
         // Realizar una solicitud GET al servidor local
-        const respuesta = await fetch('http://192.168.43.64:3001/api/sensor/login', {
+        const respuesta = await fetch('http://192.168.0.25:3001/api/sensor/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
