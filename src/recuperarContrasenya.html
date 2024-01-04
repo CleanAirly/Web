@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña - Pbiometria</title>
+    <link rel="stylesheet" href="css/estilos5.css">
+    <link rel="stylesheet" href="css/restablecerContrasenya2.css">
+    <link rel="stylesheet" href="css/animaciones.css">
+    <link rel="stylesheet" href="css/menu.css">
+
+</head>
+<body>
+
+    <!------------------------------------------------ MENU ------------------------------------------------>
+
+    <header>
+        <nav id="main-menu" class="activo" role="menubar">
+            <a href="index.html" ><img src="images/cleanAirlyLogo2.webp" id="logo" alt="logo"></a>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="contactanos.html">Contáctanos</a></li>
+                <li><a href="login.html" class="pagina-actual centrar" id="sesion">Iniciar Sesion</a></li>
+            </ul>
+            <div class="hamburguesa">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <!------------------------------------------------ DATOS DEL USUARIO ------------------------------------------------>
+
+    <section class="centrar">
+        <form class="alinear-izquierda" id="restablecer-contrasenya">
+            <h1>¿Has olvidado tu contraseña?</h1>
+            <h2>No te preocupes, añade una nueva</h2>
+
+            <label for="nuevaContrasenya"><h3>Nueva contraseña:</h3></label>
+            <input type="password" name="nuevaContrasenya" id="nuevaContrasenya" class="recuadros-inputs" required>
+
+            <label for="confNuevaContrasenya"><h3>Repite la contraseña:</h3></label>
+            <input type="password" name="confNuevaContrasenya" id="confNuevaContrasenya" class="recuadros-inputs" required>
+
+            <label id="error" class="hidden">Las contraseñas no coinciden</label>
+
+            <p id="nivel-seguridad">Nivel de seguridad:</p>
+            <div id="contenedor-seguridad" class="contenedores-sombra"><div id="progreso-seguridad"></div></div>
+            <p id="txt-seguridad">Tu contraseña es segura</p>
+
+            <input type="submit" value="Guardar contraseña" id="boton-recuperar-contrasenya" class="crecer boton boton-azul">
+
+        </form>
+
+       <dialog class="centrar contenedores-sombra" id="popup-password-cambiada">
+            <h3>Se ha cambiado la contraseña</h3>
+            <div class="botones-pop-up">
+                <button id="aceptar-cambio" class="crecer boton boton-azul">Aceptar</button>
+            </div>
+        </dialog>
+
+    </section>
+    <script src="menu2.js"></script>
+    <script type="module" src="recuperarContrasenya2.js"></script>
+</body>
+</html>

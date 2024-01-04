@@ -1,0 +1,108 @@
+/* FONDO ------------------------------------------------------------------------------------------------ */
+section{
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+#foto-banco{
+    margin-top: 2rem;
+    width:50%;
+    height: 49rem;
+}
+#contenedor-contenedores-login{
+    height: 100vh;
+    width: 50%;
+}
+#contenedor-formulario{
+    margin-top: 2rem;
+    width: 80%;
+}
+h1{
+    font-size: 30px;
+    font-weight: 570;
+}
+h5{
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+}
+form{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+label{
+    margin-bottom: 1rem;
+    color: grey;
+    font-size: 20px;
+}
+#email-error{
+    color: var(--txt-error);
+    font-size: 12px;
+    margin-top: -0.25rem;
+    margin-bottom: 1rem;
+}
+input{
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+#boton-acceder{
+    width: 45%;
+    margin-top: 2rem;
+    margin-left: 55%;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.20);
+}
+p{
+    margin-top: 1rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#descargar-app{
+    text-decoration: underline;
+}
+@media screen and (max-width:1270px){
+    #foto-banco{
+        width: 35vw;
+    }
+    
+    #contenedor-contenedores-login{
+        width: 75vw;
+    }
+    
+}
+
+@media screen and (max-width:950px){
+    #foto-banco{
+        display: none;
+    }
+    #contenedor-contenedores-login{
+        width: 100%;
+    }
+}
+@media screen and (max-width:750px){
+    section{
+        padding: 0;
+    }
+    #foto-banco{
+        display: none;
+    }
+    #contenedor-contenedores-login{
+        justify-content: start;
+        background-image: url("../images/icono_probeta.svg");
+        background-repeat: no-repeat;
+        background-size: 27rem;
+        background-position: -55px bottom;
+    }
+    form{
+        width: 80%;
+    }
+    h1{
+        margin-top: 8rem;
+    }
+}

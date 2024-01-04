@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctanos - Pbiometria</title>
+    <link rel="stylesheet" href="css/estilos5.css">
+    <link rel="stylesheet" href="css/contactanos2.css">
+    <link rel="stylesheet" href="css/animaciones.css">
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+
+<!------------------------------------------------ MENU ------------------------------------------------>
+
+<header>
+    <nav id="main-menu" class="activo" role="menubar">
+        <a href="index.html" ><img src="images/cleanAirlyLogo2.webp" id="logo" alt="logo"></a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="contactanos.html" class="pagina-actual centrar">Contáctanos</a></li>
+            <li><a href="login.html"  id="sesion">Iniciar Sesión</a></li>
+        </ul>
+        <div class="hamburguesa">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+</header>
+<!------------------- Sección formulario ------------------->
+<section>
+    <div id="seccion-form" class="maximo">
+        <h2> Contáctanos </h2>
+        <div id="contenedor-form">
+            <div id="contenedor-izquierda">
+                <h3> Contacta ahora </h3>
+                <div class="contenedor-contacto">
+                    <div class="icono-contacto">
+                        <!-- icono del email -->
+                        <img src="images/icono_mensaje.png" alt="mensaje">
+                    </div>
+                    <p> cleanairly@gmail.com </p>
+                </div>
+                <div class="contenedor-contacto">
+                    <div class="icono-contacto">
+                        <!-- icono del teléfono -->
+                        <img src="images/icono_telefono.png" alt="telefono">
+                    </div>
+                    <p> +34 672 652 773 </p>
+                </div>
+            </div>
+            <div id="contenedor-derecha">
+                <h3> Solicita información </h3>
+                <p> Y nos pondremos en contacto contigo. ¡Solventa tus dudas! </p>
+                <form id="form">
+                    <label>
+                        <input class="input-form recuadros-inputs" id="nombre-usuario" type="text" placeholder="Introduce tu nombre y apellidos" required>
+                    </label>
+                    <label>
+                        <input class="input-form recuadros-inputs" id="correo-usuario" type="email" placeholder="Introduce tu correo electrónico" required>
+                    </label>
+                    <label>
+                        <input class="input-form recuadros-inputs" id="telefono-usuario" type="number" placeholder="Introduce tu número de teléfono" required>
+                    </label>
+                    <label id="checkbox-politica">
+                        <input type="checkbox" id="privacidad" name="privacy" required>
+                        <label for="privacidad">He leído y acepto la <u>política de privacidad</u> y el <u> aviso
+                            legal</u>
+                        </label>
+                    </label>
+                    <label id="contenedor-btn-enviar">
+                        <button type="submit" id="boton-enviar-correo" class="boton"> Enviar</button>
+                    </label>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="contactanos.js"></script>
+<script src="menu2.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+    emailjs.init('0jpZYQCN8Gc5osRv7')
+</script>
+
+</body>
+</html>

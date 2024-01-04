@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - PBiometria</title>
+    <link rel="stylesheet" href="css/estilos5.css">
+    <link rel="stylesheet" href="css/admin2.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/animaciones.css">
+</head>
+<body class="noVisible">
+<header>
+    <nav id="main-menu" class="activo" role="menubar">
+        <a href="index.html" ><img src="images/cleanAirlyLogo2.webp" id="logo" alt="logo"></a>
+        <ul>
+            <li><a class="pagina-actual" id="cerrar-sesion">Cerrar sesión</a></li>
+        </ul>
+        <div class="hamburguesa">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+</header>
+<section>
+
+    <div id="contenedor-txt-filtros">
+        <h1>Administrar usuarios</h1>
+        <div id="contenedor-filtros">
+            <select class="contenedores-sombra" id="optgroup">
+                <optgroup label="Filtrar sensor">
+                    <option value="opcion1">Sin filtro</option>
+                    <option value="opcion2">Nodos activos</option>
+                    <option value="opcion3">Nodos inactivos</option>
+                    <option value="opcion4">Sin datos</option>
+
+                </optgroup>
+            </select>
+            <div id="buscador" class="contenedores-sombra">
+                <input id="barraBusqueda" onkeyup="buscarUsuario()" type="text" placeholder="Buscar un usuario...">
+                <img src="images/icono-lupa.webp" id="icono-buscar" alt="buscar">
+            </div>
+        </div>
+    </div>
+    <div class="centrar contenedores-sombra" id="contenedor-tabla">
+
+        <div class="contenedor-usuario bordegordo">
+            <div class="contenedor-checkbox"></div>
+            <div class="contenedor-nombre"><h3 id="ordenarNombre">Nombre</h3></div>
+            <div class="contenedor-email"><h3 id="ordenarEmail">Email</h3></div>
+            <div class="contenedor-telefono"><h3 id="ordenarTelefono">Teléfono</h3></div>
+            <div class="contenedor-sensor"><h3 id="ordenarSensor">Sensor</h3></div>
+            <div class="contenedor-estadosensor"><h3 id="ordenarEstado">Estado del sensor</h3></div>
+            <div class="contenedor-tiempo"><h4 id="ordenarTiempo">Tiempo en el estado actual</h4></div>
+        </div>
+
+        <div id="contenedor-paginas">
+            <div class="circulo-claro centrar" id="anterior"><img src="images/icono-flecha-izq.svg" alt="flecha-izquierda"></div>
+            <p id="numero-pagina" class="centrar">1</p>
+            <div class="circulo-claro centrar" id="siguiente"><img src="images/icono-flecha-derecha.svg" alt="flecha-derecha"></div>
+        </div>
+
+    </div>
+
+    <dialog class="centrar contenedores-sombra" id="popup-borrar-usuario">
+        <h3 id="texto-popup-borrarUsuario"></h3>
+        <div class="botones-pop-up">
+            <button id="cancelar-borrar" class="crecer boton boton-blanco">Cancelar</button>
+            <button id="aceptar-borrar" class="crecer boton boton-azul">Aceptar</button>
+        </div>
+    </dialog>
+
+    <dialog class="centrar contenedores-sombra" id="popup-cerrar-sesion">
+        <h3>¿Deseas cerrar la sesión?</h3>
+        <div class="botones-pop-up">
+            <button id="aceptar-cerrar" class="crecer boton boton-blanco">Aceptar</button>
+            <button id="cancelar-cerrar" class="crecer boton boton-azul">Cancelar</button>
+        </div>
+    </dialog>
+</section>
+
+<script src="admin.js"></script>
+<script src="menu2.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+/* FONDO ------------------------------------------------------------------------------------------------ */
+body{
+    overflow-x: hidden;
+}  
+.izquierda{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+.blanco{
+    background-color: var(--fondo-pagina);
+    background-image: url("../images/fondo_circulos.svg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+.contenedor-texto-izquierda{
+    padding-left: 6rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+#texto-h1{
+    width: 40%;
+}
+h1{
+    margin-top: 13rem;
+    font-size: 35px;
+    margin-bottom: 1rem;
+}
+p{
+    font-size: 18px;
+}
+#contenedor-botones{
+    margin-bottom: 10rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;   
+}
+button{
+    margin-top: 2rem;
+    width: 150px;
+    height: 40px;
+}
+#boton-blanco-landing{
+    margin-right: 1rem;
+}
+#portatil-movil{
+    position: absolute;
+    right: 0;
+    margin-top:4rem;
+    margin-right: 3rem;
+    height: 40rem;
+    width: 40rem;
+}
+svg{
+    width: 100%;
+}
+
+.derecha{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: start;
+}
+.azul{
+    background-image: none;
+    background-color: var(--secciones);
+    color: var(--fondo-pagina);
+}
+
+#movil{
+    position: absolute;
+    height: 35rem;
+    width: 35rem;
+    left: 0;
+    top:30rem;
+}
+.contenedor-texto-derecha{
+    margin-top: 2rem;
+    width: 50%;
+    padding-right: 6rem ;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+}
+
+h2{
+    font-size: 25px;
+    margin-bottom: 0.1rem;
+}
+h3{
+    font-size: 22px;
+    font-weight: 400;
+}
+.contenedor-texto-derecha p{
+    text-align: end;
+}
+h5{
+    margin-top: 0.25rem;
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.seccion-blanca{
+    justify-content: end;
+}
+#portatil{
+    position: absolute;
+    left: 0;
+    margin-left: 9rem;
+    margin-top: -2rem;
+    height: 600px;
+    width: 600px;
+}
+
+#descargar-app{
+    margin-top: 2rem;
+    height: 77px;
+    width: 200px;
+}
+#tu-ere-pobre{
+    position: absolute;
+    right: 0;
+    margin-right: 8rem;
+    margin-top: -15rem;
+    height: 40rem;
+    width: 40rem;
+}
+#ultima-foto{
+    margin-top: -10rem;
+}
+#preguntas-frecuentes-venta{
+    height: auto;
+    margin-top:0;
+    margin-bottom: 11rem;
+}
+#preguntas-frecuentes-venta h2{
+    margin-top: 2rem;
+}
+footer{
+    width: 100%;
+    margin-top: -1rem;
+    height: 300px;
+    background-color: var(--circulo2);
+    padding: 2rem;
+}
+#logo-landing{
+    width: 100px;
+    height: 100px;
+}
+#politicas{
+    text-decoration: underline;
+    margin-top: 1rem;
+}
+
+@media screen and (max-width:1100px){
+    #portatil-movil{
+        height: 28rem;
+        width: 28rem;
+    }
+    #movil{
+        height: 40rem;
+        width: 40rem;
+        top:45rem;
+        margin-left: -6rem;
+    }
+    #portatil{
+        margin-left: 0;
+        height: 500px;
+        width: 500px;
+    }
+    #tu-ere-pobre{
+        margin-right: -2rem;
+        margin-top: -10rem;
+        height: 25rem;
+        width: 25rem;
+    }
+}
+@media screen and (max-width:900px){
+    #texto-h1{
+        width: 100%;
+    }
+    .izquierda{
+        align-items: center;
+        justify-content: center;
+    }
+    .contenedor-texto-izquierda{
+        width: 90%;
+        padding:0 3rem;
+        align-items: center;
+    }
+    h1{
+        margin-top: 9rem;
+    }
+    p{
+        font-size: 16px;
+    }
+    #contenedor-botones{
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        margin-bottom: 6rem;
+    }
+    button{
+        width: 150px;
+    }
+    #portatil-movil{
+        height: 20rem;
+        width: 20rem;
+        margin: 0 0;
+        right: auto;
+        position: relative;
+    }
+    .derecha{
+        align-items: center;
+        justify-content: center;
+    }
+    .contenedor-texto-derecha{
+        width: 90%;
+        padding: 0 3rem;
+        align-items: start;
+    }
+    .contenedor-texto-derecha p{
+        text-align: start;
+    }
+    #movil{
+        position: relative;
+        left: auto;
+        margin-top: -10rem;
+        top:0;
+        margin-left: 0rem;
+        width: 25rem;
+        height: 25rem;
+    }
+    #portatil{
+        width: 250px;
+        height: 250px;
+        top:0;
+        margin-top: 0;
+        position: relative;
+    }
+    #tu-ere-pobre{
+        position: relative;
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: -15rem;
+        height: 25rem;
+        width: 25rem;
+    }
+}
