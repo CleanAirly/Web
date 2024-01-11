@@ -30,8 +30,6 @@ import { guardarDatosPerfil } from './LogicaFake/LogicaFakeEditarPerfil2.js';
 
 (async () => {
     try {
-        popupCerrarSesion.style.display = "none";
-        popupGuardar.style.display = "none";
 
         const resultado = await obtenerDatosUsuario(emailUsuario);
         nombreUsuario.value = resultado.nombre;

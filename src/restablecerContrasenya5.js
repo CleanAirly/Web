@@ -61,7 +61,7 @@ async function nuevaPassword(event){
             errorLabel.classList.add("hidden");
             let passwordNuevaCifrada = await hashPassword(nuevaContrasenya)
             await cambiarContrasenya(emailUsuario, passwordNuevaCifrada)
-            window.location.href='perfil2.html'
+            window.location.href='nuevoPerfil.html'
         }else{
             errorLabel.classList.remove("hidden");
             console.log("ERROR")

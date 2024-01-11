@@ -66,18 +66,8 @@ p{
 #descargar-app{
     text-decoration: underline;
 }
-@media screen and (max-width:1270px){
-    #foto-banco{
-        width: 35vw;
-    }
-    
-    #contenedor-contenedores-login{
-        width: 75vw;
-    }
-    
-}
 
-@media screen and (max-width:950px){
+@media screen and (max-width:1270px){
     #foto-banco{
         display: none;
     }
