@@ -133,74 +133,122 @@ import { ultimasMedidasOzonoConMedia } from './LogicaFake/LogicaFakeHome4.js';
                     attribution: '© OpenStreetMap contributors'
                 }).addTo(map);
                 // Crear un marcador en las coordenadas específicas
+                
                 let marker = L.marker([38.9679774, -0.1910988]).addTo(map);
-
                 // Establecer el texto del marcador como "Estacion Oficial Gandia"
-                marker.bindPopup("Estacion Oficial").openPopup();
+                marker.bindPopup("Estacion Oficial Gandía").openPopup();
 
 
                 let listaMedidas = [];
                 let medidaOficial = {lugar: "38.9679774,-0.1910988", valor: 63}
-                listaMedidas.push(medidaOficial);
-                try {
-                    let emailUsuarios = await emailNoAdmins();
-                
-                    for (const email of emailUsuarios) {
-                        const resultado = await medidasGet(email.email);
-                        
-                        resultado.forEach(function (elemento) {
-                            listaMedidas.push(elemento);
-                        });
-                    }
-                
+                    listaMedidas.push(medidaOficial);
+                    try {
+                        let emailUsuarios = await emailNoAdmins();
                     
-                } catch (error) {
-                    console.error('Error en la ejecución:', error);
+                        for (const email of emailUsuarios) {
+                            const resultado = await medidasGet(email.email);
+                            
+                            resultado.forEach(function (elemento) {
+                                listaMedidas.push(elemento);
+                            });
+                        }
+                    
+                        
+                    } catch (error) {
+                        console.error('Error en la ejecución:', error);
+                    }
+                    
+                    console.log(listaMedidas);
+                var idwLayer = null;  // Inicializa la variable de la capa IDW como null
+
+                var selectorContaminantes = document.getElementById("selectorContaminantes");
+                selectorContaminantes.addEventListener("change", function () {
+                    let seleccion = this.value;
+                    console.log("La selección: " + seleccion);
+
+                    // Si se selecciona "ozono", borra la capa IDW
+                    if (seleccion === "CO") {
+                        if (idwLayer) {
+                            map.removeLayer(idwLayer);
+                            // se cargan en el mapa solamente la primera mitad de listaMediciones
+                            cargarMedidasEnMapa(listaMedidas.slice(150, 200));
+                        }
+                    }
+                    else if(seleccion === "NO2"){
+                        if (idwLayer) {
+                            map.removeLayer(idwLayer);
+                            // se cargan en el mapa solamente la primera mitad de listaMediciones
+                            cargarMedidasEnMapa(listaMedidas.slice(190, 220));
+                        }
+                    }
+                    else if(seleccion === "SO2"){
+                        if (idwLayer) {
+                            map.removeLayer(idwLayer);
+                            // se cargan en el mapa solamente la primera mitad de listaMediciones
+                            cargarMedidasEnMapa(listaMedidas.slice(100, 140));
+                        }
+                    }
+                    else{
+                        if (idwLayer) {
+                            map.removeLayer(idwLayer);
+                            // se cargan en el mapa solamente la primera mitad de listaMediciones
+                            cargarMedidasEnMapa(listaMedidas);
+                        }
+                    }
+                });
+
+                async function cargarMedidasEnMapa(listaMedidas){
+                    
+                    
+                        
+            
+                        // Lista de 500 valores ficticios centrados en Gandía para mayor densidad (ya no)
+                        var data2 = [];
+            
+    
+                        listaMedidas.forEach(medida => {
+                            const lugarValues = medida.lugar.split(",");
+                            if (lugarValues.length === 2 && !isNaN(parseFloat(lugarValues[0])) && !isNaN(parseFloat(lugarValues[1]))) {
+                            var lat = lugarValues[0]  // Latitud  
+                            var lon = lugarValues[1]  // Longitud
+                            var value = medida.valor  // Valor
+                            data2.push([lat, lon, value]);
+                            }
+                        });
+    
+                        console.log("DATA: ",data2);
+                        /*
+                        // Genera 500 puntos ficticios
+                        for (var i = 0; i < 50; i++) {
+                            var lat = gandiaCoordinates[0] + (Math.random() - 0.5) * 0.1;  // Latitud
+                            var lon = gandiaCoordinates[1] + (Math.random() - 0.5) * 0.1;  // Longitud
+                            var value = Math.random() * 100;  // Valor
+            
+                            data2.push([lat, lon, value]);
+                        }
+            */
+                        // Define una paleta de colores personalizada
+                        var gradientColors = {
+                            0.0: '#00ff00',  // Verde para valores muy bajos
+                            0.4: '#FFA500',  // Amarillo para valores medianos
+                            0.9: '#ff0000'   // Rojo para valores muy altos
+                        };
+    
+                            // Utiliza Leaflet-IDW para realizar la interpolación con mayor resolución
+                             idwLayer = L.idwLayer(data2, {
+                                opacity: 0.5,
+                                maxZoom: 18,
+                                cellSize: 7,  // Celda más pequeña para mayor resolución
+                                exp: 5,
+                                max: 700,
+                                gradient: gradientColors  // Aplica la paleta de colores personalizada
+                            }).addTo(map); 
                 }
                 
-                console.log(listaMedidas);
+                cargarMedidasEnMapa(listaMedidas);
                 
-                    
         
-                    // Lista de 500 valores ficticios centrados en Gandía para mayor densidad
-                    var data2 = [];
-        
-
-                    listaMedidas.forEach(medida => {
-                        const lugarValues = medida.lugar.split(",");
-                        if (lugarValues.length === 2 && !isNaN(parseFloat(lugarValues[0])) && !isNaN(parseFloat(lugarValues[1]))) {
-                        var lat = lugarValues[0]  // Latitud  
-                        var lon = lugarValues[1]  // Longitud
-                        var value = medida.valor  // Valor
-                        data2.push([lat, lon, value]);
-                        }
-                    });
-
-                    console.log("DATA: ",data2);
-                    /*
-                    // Genera 500 puntos ficticios
-                    for (var i = 0; i < 50; i++) {
-                        var lat = gandiaCoordinates[0] + (Math.random() - 0.5) * 0.1;  // Latitud
-                        var lon = gandiaCoordinates[1] + (Math.random() - 0.5) * 0.1;  // Longitud
-                        var value = Math.random() * 100;  // Valor
-        
-                        data2.push([lat, lon, value]);
-                    }
-        */
-                    // Utiliza Leaflet-IDW para realizar la interpolación con mayor resolución
-                    var idwLayer = L.idwLayer(data2, {
-                        opacity: 0.7,
-                        maxZoom: 18,
-                        cellSize: 10,  // Celda más pequeña para mayor resolución
-                        exp: 2,
-                        max: 100
-                    }).addTo(map);
-        
-                    // Añade marcadores en el mapa para cada punto
-                    data2.forEach(function (point) {
-                        L.marker([point[0], point[1]]).addTo(map)
-                            .bindPopup('Valor: ' + point[2].toFixed(2));  // Redondea el valor a dos decimales
-                    });
+                  
                     
                     /*
                     // Añade una leyenda de colores utilizando D3.js
@@ -331,6 +379,9 @@ if (seleccion === "ozono") {
     
 })();
 
+
+
+
 function setProgressBar(progress) {
     const totalLength = 596.9; 
     const dashoffset = totalLength - (progress / 100) * totalLength;
@@ -359,3 +410,6 @@ function setProgressBar(progress) {
         console.log("Error: "+e);
     }
 }
+
+
+

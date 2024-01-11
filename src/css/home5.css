@@ -107,11 +107,18 @@ h4{
     background-color: var(--circulo);
     border-radius: 5px;
 }
+#indicador1{
+    width: 50px;
+    height: 25px;
+    margin-right: 0.5rem;
+    background-color: greenyellow;
+    border-radius: 5px;
+}
 #indicador2{
     width: 50px;
     height: 25px;
     margin-right: 0.5rem;
-    background-color: lime;
+    background-color: orange;
     border-radius: 5px;
 }
 #indicador3{
