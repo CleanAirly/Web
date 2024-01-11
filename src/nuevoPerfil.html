@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil - Pbiometria</title>
   <link rel="stylesheet" href="css/estilos5.css">
-  <link rel="stylesheet" href="css/nuevoPerfil2.css">
+  <link rel="stylesheet" href="css/nuevoPerfil3.css">
   <link rel="stylesheet" href="css/animaciones.css">
   <link rel="stylesheet" href="css/menu.css">
 </head>
@@ -38,12 +38,14 @@
 
       <label for="nombre-usuario">Nombre:</label>
       <input type="text" name="nombre" id="nombre-usuario" class="recuadros-inputs" required>
+      <img src="images/icono_editar.svg" alt="editar-nombre" class="imagen-editar">
 
       <h5> Email</h5>
       <div class="recuadros-inputs"><p id="email-usuario">marta@gmail.com</p></div>
 
       <label for="telefono-usuario">Teléfono:</label>
       <input type="number" name="telefono" id="telefono-usuario" class="recuadros-inputs" required>
+      <img src="images/icono_editar.svg" alt="editar-nombre" class="imagen-editar">
 
       <label id="error" class="hidden">Credenciales incorrectas</label>
 
@@ -57,11 +59,11 @@
       <h2>Tu sensor</h2>
       <div id="contenedor-progress-bar" class="centrar">
         <svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
-          <circle class="progress-bar-background" cx="110" cy="110" r="95" stroke="#E5E5E5" stroke-width="20" />
+          <circle class="progress-bar-background" cx="110" cy="110" r="95" stroke="#37A5AA" stroke-width="20" />
           <circle class="progress-bar-fill" cx="110" cy="110" r="95" stroke-linecap="round" stroke-width="20" />
         </svg>
         <div id="contenedor-porcentaje-bat" class="centrar">
-          <h3>76%</h3>
+          <h3 id="porcentaje-bateria">76%</h3>
           <p>Batería</p>
         </div>
       </div>
@@ -92,8 +94,8 @@
   </section>
 
 <script src="menu2.js"></script>
-<script  type="module" src="nuevoPerfil.js"></script>
-<script src="progressBar.js"></script>
+<script  type="module" src="nuevoPerfil2.js"></script>
+<script src="progressBar2.js"></script>
 
 </body>
 </html>
