@@ -1,4 +1,4 @@
-const IP = "192.168.1.101";
+const IP = "192.168.1.47";
 
 /**
  * @brief Esta función obtiene datos desde un servidor local y los muestra en la página web.

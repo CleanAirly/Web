@@ -50,14 +50,14 @@ botonGuardarCambios.addEventListener('click', function(event) {
     popupGuardar.showModal();
     popupGuardar.style.display="block";
 });
-function confirmarGuardar(){
+async function confirmarGuardar() {
     const nombre = nombreUsuario.value;
     const telefono = telefonoUsuario.value;
     // Luego puedes realizar otras acciones, como enviar los datos al servidor
-    guardarDatosPerfil(nombre, emailUsuario, telefono);
-
+    await guardarDatosPerfil(nombre, emailUsuario, telefono);
+    location.href = 'home.html'
     popupGuardar.close();
-    popupGuardar.style.display="none";
+    popupGuardar.style.display = "none";
 }
 function cerrarConfirmarGuardar(){
     popupGuardar.close();

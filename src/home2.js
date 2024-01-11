@@ -2,7 +2,7 @@ const progressBarFill = document.querySelector('.progress-bar-fill');
 var mostrarValor = document.getElementById("texto-informativo");
 const displayBienvenida = document.getElementById('nombre-usuario');
 
-let RUTA = 'http://192.168.1.101:3001/api/sensor';
+let RUTA = 'http://192.168.1.47:3001/api/sensor';
 
 let listaInstantes = [];
 let listaValores = [];
@@ -20,11 +20,11 @@ import { ultimasMedidasOzonoConMedia } from './LogicaFake/LogicaFakeHome4.js';
 
         const emailUsuario = localStorage.getItem('usuarioLogeado');
 
-        let datosUsuario = await nombreUsuarioGet(emailUsuario);
+        /*let datosUsuario = await nombreUsuarioGet(emailUsuario);
         if(datosUsuario !== null){
             displayBienvenida.innerHTML = "¡Hola, "+datosUsuario.nombre+"!";
             nombreUsuarioGet(emailUsuario).then()
-        }
+        }*/
 
         let ultimaMedida = await ultimaMedidaGet(emailUsuario);
         let mediaUltimas8Horas = await ultimasMedidasOzonoConMedia(emailUsuario);
@@ -410,6 +410,3 @@ function setProgressBar(progress) {
         console.log("Error: "+e);
     }
 }
-
-
-

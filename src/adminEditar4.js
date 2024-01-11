@@ -125,7 +125,7 @@ cancelarSalirEditar.addEventListener('click',cancelarCancelarEditar);
 async function guardarDatosPerfil(nombre, email, telefono) {
     try {
         // Realizar una solicitud PUT al servidor local
-        const respuesta = await fetch('http://192.168.1.101:3001/api/sensor/usuarioUpdate', {
+        const respuesta = await fetch('http://192.168.1.47:3001/api/sensor/usuarioUpdate', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json' // Ajustar los encabezados según sea necesario
