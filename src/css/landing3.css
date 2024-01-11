@@ -1,7 +1,7 @@
 /* FONDO ------------------------------------------------------------------------------------------------ */
 body{
     overflow-x: hidden;
-}  
+}
 .izquierda{
     width: 100vw;
     height: auto;
@@ -14,7 +14,7 @@ body{
     background-color: var(--fondo-pagina);
     background-image: url("../images/fondo_circulos.svg");
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: cover;
 }
 .contenedor-texto-izquierda{
     padding-left: 6rem;
@@ -41,7 +41,7 @@ p{
     display: flex;
     flex-direction: row;
     justify-content: start;
-    align-items: start;   
+    align-items: start;
 }
 button{
     margin-top: 2rem;

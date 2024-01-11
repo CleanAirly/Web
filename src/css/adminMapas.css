@@ -1,0 +1,48 @@
+section{
+    background-color: var(--fondo-pagina);
+    background-image: url("../images/fondo_circulos.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+#contenedor-mapas{
+    margin-top: 7rem;
+    height: 70%;
+    width: 70%;
+}
+#map-container{
+    height: 80%;
+    width: 90%;
+}
+#contenedor-selector{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+label{
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+select{
+    height: 30px;
+    width: 125px;
+    margin-bottom: 1rem;
+    background-color: var(--blanco-contenedores);
+    border-radius: 15px;
+    box-shadow: 0 0 15px 5px rgba(157, 157, 157, 0.15);
+    text-align: center;
+}
+select:focus{
+    outline: none;
+}
